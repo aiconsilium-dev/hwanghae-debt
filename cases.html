@@ -74,16 +74,17 @@
 }
 
 .timeline-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: var(--radius);
   padding: 32px;
   transition: all 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .timeline-card:hover {
-  background: var(--surface-hover);
-  border-color: rgba(255,255,255,0.15);
+  border-color: rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .timeline-tag {
@@ -141,6 +142,7 @@
 .cta-section {
   border-top: 1px solid var(--border);
   text-align: center;
+  background: var(--bg-secondary);
 }
 
 .cta-section h2 { margin-bottom: 16px; }

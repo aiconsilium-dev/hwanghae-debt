@@ -4,47 +4,73 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE H 채권회수센터</title>
-<meta name="description" content="빌려준 돈, 못 받은 월급, 날린 투자금. 변호사가 끝까지 받아드립니다.">
+<meta name="description" content="받아야 할 돈, 포기하지 마세요. 전담 변호사가 처음부터 끝까지 책임집니다.">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-/* ── Hero ── */
+/* ── Hero — 좌정렬 + 3D ── */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
-  max-width: 860px;
+  max-width: 640px;
 }
 
 .hero-eyebrow {
-  font-size: 13px;
-  color: var(--accent);
-  letter-spacing: 3px;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 600;
   margin-bottom: 32px;
 }
 
 .hero h1 {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
+  line-height: 1.05;
 }
 
 .hero-sub {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--text-muted);
-  max-width: 520px;
-  line-height: 1.7;
-  margin-bottom: 48px;
+  max-width: 440px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 /* ── Stats ── */
 .stats-section {
   border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
 }
 
 .stats-grid {
@@ -66,14 +92,15 @@
 }
 
 .service-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: var(--radius);
   padding: 40px 36px;
   transition: all 0.3s;
   display: block;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .service-card::before {
@@ -90,8 +117,8 @@
 .service-card:hover::before { transform: scaleX(1); }
 
 .service-card:hover {
-  background: var(--surface-hover);
-  border-color: rgba(255,255,255,0.15);
+  border-color: rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   transform: translateY(-4px);
 }
 
@@ -104,6 +131,17 @@
   font-size: 15px;
   line-height: 1.7;
   margin-bottom: 24px;
+}
+
+.service-card .price-hint {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--accent-light);
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 16px;
 }
 
 .service-link {
@@ -122,14 +160,22 @@
 .cta-section {
   border-top: 1px solid var(--border);
   text-align: center;
+  background: var(--bg-secondary);
 }
 
 .cta-section h2 {
-  margin-bottom: 48px;
+  margin-bottom: 20px;
+}
+
+.cta-section .cta-sub {
+  color: var(--text-muted);
+  font-size: 17px;
+  margin-bottom: 40px;
 }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; gap: 40px; }
   .services-grid { grid-template-columns: 1fr; }
 }
@@ -158,12 +204,31 @@
 
 <!-- Hero -->
 <section class="hero">
+  <!-- 3D Orb Background -->
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
   <div class="container">
-    <div class="hero-content fade-up">
-      <div class="hero-eyebrow">채권회수 전문 법무법인</div>
-      <h1>돈 떼인 사람,<br>여기 모이세요.</h1>
-      <p class="hero-sub">빌려준 돈, 못 받은 월급, 날린 투자금.<br>변호사가 끝까지 받아드립니다.</p>
-      <a href="consult.html" class="btn-primary">지금 접수하기 →</a>
+    <div class="hero-inner">
+      <div class="hero-content fade-up">
+        <div class="hero-eyebrow">채권회수 전문 법무법인</div>
+        <h1>받아야 할 돈,<br>포기하지 마세요.</h1>
+        <p class="hero-sub">대여금 · 미수금 · 투자금 · 용역비<br>전담 변호사가 처음부터 끝까지 책임집니다.</p>
+        <div class="hero-pills">
+          <span class="pill-badge">지급명령 55만원부터</span>
+          <span class="pill-badge">성공보수제</span>
+          <span class="pill-badge">전국 비대면</span>
+        </div>
+        <div class="hero-cta-group">
+          <a href="consult.html" class="btn-primary">무료 상담 받기 →</a>
+          <a href="cost.html" class="btn-outline">비용 안내</a>
+        </div>
+      </div>
+      <div></div>
     </div>
   </div>
 </section>
@@ -172,26 +237,12 @@
 <section class="marquee-section" style="padding:40px 0;">
   <div class="marquee">
     <div class="marquee-track">
-      <span class="marquee-text">돈 떼이면 끝인가요.</span>
-      <span class="marquee-text filled">돈 떼이면 끝인가요.</span>
-      <span class="marquee-text">돈 떼이면 끝인가요.</span>
-      <span class="marquee-text filled">돈 떼이면 끝인가요.</span>
-      <span class="marquee-text">돈 떼이면 끝인가요.</span>
-      <span class="marquee-text filled">돈 떼이면 끝인가요.</span>
-      <span class="marquee-text">돈 떼이면 끝인가요.</span>
-      <span class="marquee-text filled">돈 떼이면 끝인가요.</span>
-    </div>
-  </div>
-  <div class="marquee">
-    <div class="marquee-track reverse">
-      <span class="marquee-text filled">받아드립니다.</span>
-      <span class="marquee-text">받아드립니다.</span>
-      <span class="marquee-text filled">받아드립니다.</span>
-      <span class="marquee-text">받아드립니다.</span>
-      <span class="marquee-text filled">받아드립니다.</span>
-      <span class="marquee-text">받아드립니다.</span>
-      <span class="marquee-text filled">받아드립니다.</span>
-      <span class="marquee-text">받아드립니다.</span>
+      <span class="marquee-text">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text filled">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text filled">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text filled">YOUR CLAIM. OUR COMMITMENT.</span>
     </div>
   </div>
 </section>
@@ -221,25 +272,29 @@
   <div class="container">
     <div class="section-header fade-up">
       <div class="section-label">Services</div>
-      <h2 class="section-title">무엇을 못 받으셨나요?</h2>
+      <h2 class="section-title">어떤 채권이든,<br>최선의 경로를 찾습니다.</h2>
     </div>
     <div class="services-grid">
       <a href="service.html#loan" class="service-card fade-up">
+        <span class="price-hint">55만원~</span>
         <h3>대여금 회수</h3>
         <p>빌려준 돈을 돌려받지 못하고 계신가요. 차용증이 없어도 이체 내역, 메신저 대화만으로 소송이 가능합니다.</p>
         <span class="service-link">자세히 보기 →</span>
       </a>
       <a href="service.html#wage" class="service-card fade-up">
+        <span class="price-hint">성공보수제</span>
         <h3>임금 체불</h3>
         <p>일한 만큼 받는 건 당연한 권리입니다. 체불 임금, 퇴직금, 연차수당까지 전액 회수합니다.</p>
         <span class="service-link">자세히 보기 →</span>
       </a>
       <a href="service.html#invest" class="service-card fade-up">
+        <span class="price-hint">민·형사 병행</span>
         <h3>투자금 반환</h3>
         <p>허위 투자 권유, 원금 보장 약속 위반. 사기로 날린 투자금을 법적 절차로 되찾아 드립니다.</p>
         <span class="service-link">자세히 보기 →</span>
       </a>
       <a href="service.html#damage" class="service-card fade-up">
+        <span class="price-hint">전국 비대면</span>
         <h3>손해배상</h3>
         <p>계약 위반, 불법행위로 인한 손해. 정확한 손해액 산정과 신속한 소송으로 배상받으세요.</p>
         <span class="service-link">자세히 보기 →</span>
@@ -252,7 +307,8 @@
 <section class="cta-section">
   <div class="container">
     <div class="fade-up">
-      <h2>더 이상<br>참지 마세요.</h2>
+      <h2>한 통의 상담이,<br>시작입니다.</h2>
+      <p class="cta-sub">무료 상담으로 승소 가능성을 확인하세요.</p>
       <a href="consult.html" class="btn-primary">무료 상담 받기 →</a>
     </div>
   </div>
@@ -304,7 +360,7 @@ document.getElementById('mobileToggle').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
 });
 
-// 스크롤 페이드인 (MeritFirst 방식)
+// 스크롤 페이드인
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

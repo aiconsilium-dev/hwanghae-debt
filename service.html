@@ -28,6 +28,10 @@
   padding: 120px 0;
 }
 
+.service-block:nth-child(even) {
+  background: var(--bg-secondary);
+}
+
 .service-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -89,6 +93,7 @@
   justify-content: center;
   font-size: 14px;
   font-weight: 600;
+  color: #fff;
 }
 
 .step-item h4 {
@@ -106,10 +111,11 @@
 
 /* Detail Card */
 .service-detail-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: var(--radius);
   padding: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .detail-section { margin-bottom: 28px; }
@@ -143,6 +149,7 @@
 .cta-section {
   border-top: 1px solid var(--border);
   text-align: center;
+  background: var(--bg-secondary);
 }
 
 .cta-section h2 { margin-bottom: 40px; }
@@ -178,7 +185,7 @@
   <div class="container">
     <div class="fade-up">
       <div class="section-label">Services</div>
-      <h1>채권 회수,<br>전문가에게 맡기세요.</h1>
+      <h1>어떤 채권이든,<br>최선의 경로를 찾습니다.</h1>
       <p>20년간 1,200건 이상의 채권 회수 소송을 수행했습니다.<br>유형별 전문 변호사가 최적의 전략으로 회수합니다.</p>
     </div>
   </div>
@@ -385,7 +392,7 @@
 <section class="cta-section">
   <div class="container">
     <div class="fade-up">
-      <h2>지금 바로<br>상담받으세요.</h2>
+      <h2>한 통의 상담이,<br>시작입니다.</h2>
       <a href="consult.html" class="btn-primary">AI 상담 접수 →</a>
     </div>
   </div>
