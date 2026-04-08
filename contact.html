@@ -4,40 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>상담 신청 | THE H 채권회수센터</title>
+<meta name="description" content="첫 상담 무료. 담당 변호사가 1영업일 내 연락드립니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0a0a0a; --surface: #171717; --border: #262626;
-  --text: #fafafa; --text-muted: #a3a3a3; --text-dim: #737373;
-  --accent: #DC2626; --accent-hover: #B91C1C; --accent-light: rgba(220,38,38,0.1);
-}
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  line-height: 1.6; -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-a { color: inherit; text-decoration: none; }
+body { min-height: 100vh; }
 
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  background: rgba(10,10,10,0.85); border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
-.nav-links { display: flex; align-items: center; gap: 36px; }
-.nav-links a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; letter-spacing: 0.5px; }
-.nav-links a:hover { color: var(--text); }
-.nav-cta { background: var(--accent) !important; color: var(--text) !important; padding: 10px 24px !important; border-radius: 6px; font-weight: 600 !important; }
-
+/* ── Contact Layout ── */
 .contact-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 64px;
 }
 
 .contact-info {
@@ -47,30 +26,28 @@ nav {
   justify-content: center;
 }
 
-.page-label { font-size: 13px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 24px; }
-
 .contact-info h1 {
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 800; letter-spacing: -2px;
-  line-height: 1.1; margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .contact-info > p {
   color: var(--text-muted);
-  font-size: 16px; line-height: 1.8;
-  margin-bottom: 48px; max-width: 400px;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 56px;
+  max-width: 400px;
 }
 
 .contact-details {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
 .contact-detail-item h3 {
-  font-size: 13px;
+  font-size: 11px;
   color: var(--text-dim);
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   font-weight: 600;
   margin-bottom: 8px;
@@ -78,17 +55,18 @@ nav {
 
 .contact-detail-item p {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .contact-detail-item a {
   color: var(--text);
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
 
 .contact-detail-item a:hover { color: var(--accent); }
 
-/* Form Side */
+/* ── Form ── */
 .contact-form-wrapper {
   background: var(--surface);
   padding: 120px 48px;
@@ -103,15 +81,14 @@ nav {
   max-width: 440px;
 }
 
-.form-group {
-  margin-bottom: 24px;
-}
+.form-group { margin-bottom: 20px; }
 
 .form-label {
   display: block;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -121,12 +98,12 @@ nav {
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 16px 20px;
-  border-radius: 8px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
   font-size: 15px;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.3s;
+  transition: border-color 0.2s;
 }
 
 .form-input:focus { border-color: var(--accent); }
@@ -147,52 +124,50 @@ select.form-input {
 .btn-submit {
   width: 100%;
   background: var(--accent);
-  color: var(--text);
-  padding: 18px;
+  color: white;
+  padding: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.3s;
-  letter-spacing: 0.5px;
+  transition: all 0.2s;
 }
 
-.btn-submit:hover { background: var(--accent-hover); }
+.btn-submit:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
 
 .form-note {
   font-size: 13px;
   color: var(--text-dim);
-  margin-top: 16px;
+  margin-top: 14px;
   text-align: center;
 }
 
-footer {
-  padding: 48px; border-top: 1px solid var(--border);
-  text-align: center; color: var(--text-dim); font-size: 13px;
-}
-
-.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-.mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  nav { padding: 16px 24px; }
-  .contact-page { grid-template-columns: 1fr; padding-top: 60px; }
-  .contact-info { padding: 100px 24px 60px; }
-  .contact-form-wrapper { padding: 60px 24px; border-left: none; border-top: 1px solid var(--border); }
-  .mobile-toggle { display: block; }
-  .nav-links {
-    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-    background: var(--surface); flex-direction: column; padding: 80px 32px;
-    gap: 24px; transition: right 0.3s; border-left: 1px solid var(--border);
+  .contact-page {
+    grid-template-columns: 1fr;
+    padding-top: 60px;
   }
-  .nav-links.open { right: 0; }
+  .contact-info {
+    padding: 100px 24px 60px;
+  }
+  .contact-form-wrapper {
+    padding: 60px 24px 80px;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
 }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- Navigation -->
+<nav class="always-glass" id="nav">
   <a href="index.html" class="nav-logo">THE H</a>
   <div class="nav-links" id="navLinks">
     <a href="service.html">서비스</a>
@@ -200,14 +175,17 @@ footer {
     <a href="cases.html">사례</a>
     <a href="consult.html" class="nav-cta">상담 접수</a>
   </div>
-  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="contact-page">
-  <div class="contact-info">
-    <div class="page-label">Contact</div>
+  <!-- Info -->
+  <div class="contact-info fade-up">
+    <div class="section-label">Contact</div>
     <h1>상담을<br>신청하세요.</h1>
-    <p>간단한 정보를 남겨주시면 담당 변호사가 1영업일 내 연락드립니다. 첫 상담은 무료입니다.</p>
+    <p>간단한 정보를 남겨주시면 담당 변호사가<br>1영업일 내 연락드립니다. 첫 상담은 무료입니다.</p>
     <div class="contact-details">
       <div class="contact-detail-item">
         <h3>전화</h3>
@@ -228,8 +206,9 @@ footer {
     </div>
   </div>
 
+  <!-- Form -->
   <div class="contact-form-wrapper">
-    <form class="contact-form" onsubmit="handleSubmit(event)">
+    <form class="contact-form fade-up" id="contactForm" onsubmit="handleSubmit(event)">
       <div class="form-group">
         <label class="form-label">이름</label>
         <input class="form-input" type="text" placeholder="홍길동" required>
@@ -263,8 +242,30 @@ footer {
   </div>
 </div>
 
+<!-- Footer -->
 <footer>
-  <p>2026 THE H 채권회수센터. All rights reserved.</p>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo">THE H</div>
+      <p class="footer-desc">황해 채권회수센터는 채권 회수 전문 법무법인입니다.</p>
+    </div>
+    <div class="footer-links-group">
+      <h4>바로가기</h4>
+      <a href="service.html">서비스 소개</a>
+      <a href="cost.html">비용 안내</a>
+      <a href="cases.html">승소 사례</a>
+      <a href="contact.html">상담 신청</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>상담</h4>
+      <a href="consult.html">AI 상담 접수</a>
+      <a href="tel:02-1234-5678">02-1234-5678</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 THE H 채권회수센터. All rights reserved.</span>
+    <span>서울특별시 서초구 법원로 00길 00</span>
+  </div>
 </footer>
 
 <script>
@@ -272,10 +273,20 @@ document.getElementById('mobileToggle').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
 });
 
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  form.innerHTML = '<div style="text-align:center;padding:40px 0"><h2 style="font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:16px">신청이 완료되었습니다</h2><p style="color:var(--text-muted);font-size:15px">담당 변호사가 1영업일 내 연락드리겠습니다.</p></div>';
+  form.innerHTML = `
+    <div style="text-align:center;padding:48px 0">
+      <h2 style="font-size:32px;font-weight:500;letter-spacing:-0.8px;margin-bottom:16px">신청이 완료되었습니다</h2>
+      <p style="color:var(--text-muted);font-size:15px;line-height:1.7">담당 변호사가 1영업일 내 연락드리겠습니다.<br>평일 오전 9시 ~ 오후 6시 운영</p>
+    </div>
+  `;
 }
 </script>
 </body>

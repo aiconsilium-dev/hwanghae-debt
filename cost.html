@@ -4,67 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>비용 안내 | THE H 채권회수센터</title>
+<meta name="description" content="투명한 비용 구조. 숨겨진 비용 없이 사건 유형별 명확한 비용을 안내합니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0a0a0a; --surface: #171717; --border: #262626;
-  --text: #fafafa; --text-muted: #a3a3a3; --text-dim: #737373;
-  --accent: #DC2626; --accent-hover: #B91C1C; --accent-light: rgba(220,38,38,0.1);
-}
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  line-height: 1.6; -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  background: rgba(10,10,10,0.85); border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
-.nav-links { display: flex; align-items: center; gap: 36px; }
-.nav-links a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; letter-spacing: 0.5px; }
-.nav-links a:hover { color: var(--text); }
-.nav-cta { background: var(--accent) !important; color: var(--text) !important; padding: 10px 24px !important; border-radius: 6px; font-weight: 600 !important; }
-
+/* ── Page Hero ── */
 .page-hero {
-  padding: 180px 48px 80px;
-  max-width: 900px;
+  padding: 200px 0 120px;
 }
-.page-label { font-size: 13px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 24px; }
-.page-hero h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 800; letter-spacing: -3px; line-height: 1.1; margin-bottom: 24px; }
-.page-hero p { font-size: 18px; color: var(--text-muted); max-width: 600px; line-height: 1.8; }
 
-/* Pricing Grid */
+.page-hero p {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.8;
+  margin-top: 32px;
+}
+
+/* ── Pricing Grid ── */
 .pricing-section {
-  padding: 80px 48px 160px;
-  max-width: 1200px;
-  margin: 0 auto;
+  border-top: 1px solid var(--border);
 }
 
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 80px;
+  gap: 16px;
+  margin-bottom: 40px;
 }
 
 .pricing-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 48px 36px;
+  border-radius: var(--radius);
+  padding: 40px 32px;
   position: relative;
-  transition: all 0.4s;
+  transition: all 0.3s;
 }
 
 .pricing-card:hover {
-  border-color: #333;
+  background: var(--surface-hover);
+  border-color: rgba(255,255,255,0.15);
   transform: translateY(-4px);
 }
 
@@ -76,9 +57,9 @@ nav {
   content: '가장 많이 선택';
   position: absolute;
   top: -14px;
-  left: 36px;
+  left: 32px;
   background: var(--accent);
-  color: var(--text);
+  color: white;
   padding: 4px 16px;
   border-radius: 20px;
   font-size: 12px;
@@ -87,37 +68,40 @@ nav {
 }
 
 .pricing-type {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--accent);
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   margin-bottom: 16px;
 }
 
 .pricing-card h3 {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -1px;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.48px;
+  line-height: 1.33;
   margin-bottom: 8px;
 }
 
 .pricing-desc {
   color: var(--text-muted);
   font-size: 14px;
-  margin-bottom: 32px;
-  line-height: 1.6;
+  margin-bottom: 28px;
+  line-height: 1.7;
 }
 
 .pricing-price {
-  margin-bottom: 32px;
-  padding-bottom: 32px;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
   border-bottom: 1px solid var(--border);
 }
 
 .pricing-amount {
-  font-size: 40px;
-  font-weight: 900;
-  letter-spacing: -2px;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  line-height: 1;
 }
 
 .pricing-amount small {
@@ -132,14 +116,12 @@ nav {
   margin-top: 8px;
 }
 
-.pricing-features {
-  list-style: none;
-}
+.pricing-features { list-style: none; }
 
 .pricing-features li {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-muted);
-  padding: 10px 0;
+  padding: 9px 0;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -150,41 +132,38 @@ nav {
 
 .pricing-features li::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   background: var(--accent);
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-/* Additional Info */
+/* ── Cost Info ── */
 .cost-info {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 48px;
-  margin-bottom: 40px;
+  border-radius: var(--radius);
+  padding: 40px;
 }
 
 .cost-info h3 {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .cost-info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 32px;
 }
 
 .cost-info-item h4 {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--accent);
   font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .cost-info-item p {
@@ -193,55 +172,33 @@ nav {
   line-height: 1.7;
 }
 
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--accent); color: var(--text);
-  padding: 16px 36px; border-radius: 8px;
-  font-size: 16px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;
-}
-.btn-primary:hover { background: var(--accent-hover); }
-
+/* ── CTA ── */
 .cta-section {
-  padding: 160px 48px; text-align: center;
   border-top: 1px solid var(--border);
-}
-.cta-section h2 {
-  font-size: clamp(36px, 5vw, 64px); font-weight: 800;
-  letter-spacing: -2px; margin-bottom: 16px; line-height: 1.1;
-}
-.cta-section p { color: var(--text-muted); margin-bottom: 40px; font-size: 18px; }
-
-footer {
-  padding: 48px; border-top: 1px solid var(--border);
-  text-align: center; color: var(--text-dim); font-size: 13px;
+  text-align: center;
 }
 
-.fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s; }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
+.cta-section h2 { margin-bottom: 16px; }
 
-.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-.mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+.cta-section > .container > div > p {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  nav { padding: 16px 24px; }
-  .page-hero { padding: 140px 24px 60px; }
-  .pricing-section { padding: 40px 24px 100px; }
+  .page-hero { padding: 140px 0 80px; }
   .pricing-grid { grid-template-columns: 1fr; }
-  .cost-info { padding: 32px 24px; }
+  .cost-info { padding: 28px 24px; }
   .cost-info-grid { grid-template-columns: 1fr; }
-  .cta-section { padding: 100px 24px; }
-  .mobile-toggle { display: block; }
-  .nav-links {
-    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-    background: var(--surface); flex-direction: column; padding: 80px 32px;
-    gap: 24px; transition: right 0.3s; border-left: 1px solid var(--border);
-  }
-  .nav-links.open { right: 0; }
 }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- Navigation -->
+<nav class="always-glass" id="nav">
   <a href="index.html" class="nav-logo">THE H</a>
   <div class="nav-links" id="navLinks">
     <a href="service.html">서비스</a>
@@ -249,100 +206,135 @@ footer {
     <a href="cases.html">사례</a>
     <a href="consult.html" class="nav-cta">상담 접수</a>
   </div>
-  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<section class="page-hero fade-up">
-  <div class="page-label">Pricing</div>
-  <h1>투명한<br>비용 안내.</h1>
-  <p>숨겨진 비용 없이, 사건 유형별 명확한 비용 구조를 제시합니다.</p>
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Pricing</div>
+      <h1>투명한<br>비용 안내.</h1>
+      <p>숨겨진 비용 없이, 사건 유형별 명확한 비용 구조를 제시합니다.</p>
+    </div>
+  </div>
 </section>
 
+<!-- Pricing -->
 <section class="pricing-section">
-  <div class="pricing-grid">
-    <div class="pricing-card fade-up">
-      <div class="pricing-type">내용증명</div>
-      <h3>선제 대응</h3>
-      <p class="pricing-desc">소송 전 내용증명 발송으로 상대방에게 법적 의사를 전달합니다.</p>
-      <div class="pricing-price">
-        <div class="pricing-amount">99,000<small>원~</small></div>
-        <p class="pricing-note">부가세 별도</p>
+  <div class="container">
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-type">내용증명</div>
+        <h3>선제 대응</h3>
+        <p class="pricing-desc">소송 전 내용증명 발송으로 상대방에게 법적 의사를 전달합니다.</p>
+        <div class="pricing-price">
+          <div class="pricing-amount">99,000<small>원~</small></div>
+          <p class="pricing-note">부가세 별도</p>
+        </div>
+        <ul class="pricing-features">
+          <li>사건 검토 및 상담</li>
+          <li>내용증명 작성</li>
+          <li>등기우편 발송</li>
+          <li>상대방 반응 모니터링</li>
+        </ul>
       </div>
-      <ul class="pricing-features">
-        <li>사건 검토 및 상담</li>
-        <li>내용증명 작성</li>
-        <li>등기우편 발송</li>
-        <li>상대방 반응 모니터링</li>
-      </ul>
+
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-type">민사소송</div>
+        <h3>본격 회수</h3>
+        <p class="pricing-desc">소송을 통한 본격적인 채권 회수. 착수금 + 성공보수 구조입니다.</p>
+        <div class="pricing-price">
+          <div class="pricing-amount">1,100,000<small>원~</small></div>
+          <p class="pricing-note">착수금 기준 / 성공보수 별도</p>
+        </div>
+        <ul class="pricing-features">
+          <li>전담 변호사 배정</li>
+          <li>소장 작성 및 제출</li>
+          <li>재판 출석 및 변론</li>
+          <li>판결 후 강제집행</li>
+          <li>재산 조회 및 압류</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card fade-up">
+        <div class="pricing-type">지급명령</div>
+        <h3>신속 절차</h3>
+        <p class="pricing-desc">증거가 명확한 경우 빠르게 집행권원을 확보하는 간이 절차입니다.</p>
+        <div class="pricing-price">
+          <div class="pricing-amount">550,000<small>원~</small></div>
+          <p class="pricing-note">인지대/송달료 별도</p>
+        </div>
+        <ul class="pricing-features">
+          <li>지급명령 신청서 작성</li>
+          <li>법원 제출</li>
+          <li>이의 시 소송 전환 지원</li>
+          <li>강제집행 진행</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="pricing-card featured fade-up">
-      <div class="pricing-type">민사소송</div>
-      <h3>본격 회수</h3>
-      <p class="pricing-desc">소송을 통한 본격적인 채권 회수. 착수금 + 성공보수 구조입니다.</p>
-      <div class="pricing-price">
-        <div class="pricing-amount">1,100,000<small>원~</small></div>
-        <p class="pricing-note">착수금 기준 / 성공보수 별도</p>
-      </div>
-      <ul class="pricing-features">
-        <li>전담 변호사 배정</li>
-        <li>소장 작성 및 제출</li>
-        <li>재판 출석 및 변론</li>
-        <li>판결 후 강제집행</li>
-        <li>재산 조회 및 압류</li>
-      </ul>
-    </div>
-
-    <div class="pricing-card fade-up">
-      <div class="pricing-type">지급명령</div>
-      <h3>신속 절차</h3>
-      <p class="pricing-desc">증거가 명확한 경우 빠르게 집행권원을 확보하는 간이 절차입니다.</p>
-      <div class="pricing-price">
-        <div class="pricing-amount">550,000<small>원~</small></div>
-        <p class="pricing-note">인지대/송달료 별도</p>
-      </div>
-      <ul class="pricing-features">
-        <li>지급명령 신청서 작성</li>
-        <li>법원 제출</li>
-        <li>이의 시 소송 전환 지원</li>
-        <li>강제집행 진행</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="cost-info fade-up">
-    <h3>비용 구조 안내</h3>
-    <div class="cost-info-grid">
-      <div class="cost-info-item">
-        <h4>착수금</h4>
-        <p>사건 수임 시 납부하는 금액입니다. 청구 금액과 사건 난이도에 따라 산정되며, 분할 납부가 가능합니다.</p>
-      </div>
-      <div class="cost-info-item">
-        <h4>성공보수</h4>
-        <p>승소 또는 회수 성공 시 납부하는 금액입니다. 실제 회수 금액의 10~15%로, 결과가 없으면 보수도 없습니다.</p>
-      </div>
-      <div class="cost-info-item">
-        <h4>실비</h4>
-        <p>인지대, 송달료, 등기비용 등 소송 진행에 필요한 법원 비용입니다. 실제 발생 금액만 청구합니다.</p>
-      </div>
-      <div class="cost-info-item">
-        <h4>무료 상담</h4>
-        <p>첫 상담은 무료입니다. 사건의 승소 가능성과 예상 비용을 솔직하게 안내해 드립니다.</p>
+    <div class="cost-info fade-up">
+      <h3>비용 구조 안내</h3>
+      <div class="cost-info-grid">
+        <div class="cost-info-item">
+          <h4>착수금</h4>
+          <p>사건 수임 시 납부하는 금액입니다. 청구 금액과 사건 난이도에 따라 산정되며, 분할 납부가 가능합니다.</p>
+        </div>
+        <div class="cost-info-item">
+          <h4>성공보수</h4>
+          <p>승소 또는 회수 성공 시 납부하는 금액입니다. 실제 회수 금액의 10~15%로, 결과가 없으면 보수도 없습니다.</p>
+        </div>
+        <div class="cost-info-item">
+          <h4>실비</h4>
+          <p>인지대, 송달료, 등기비용 등 소송 진행에 필요한 법원 비용입니다. 실제 발생 금액만 청구합니다.</p>
+        </div>
+        <div class="cost-info-item">
+          <h4>무료 상담</h4>
+          <p>첫 상담은 무료입니다. 사건의 승소 가능성과 예상 비용을 솔직하게 안내해 드립니다.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section">
-  <div class="fade-up">
-    <h2>정확한 비용이<br>궁금하시다면.</h2>
-    <p>사건 내용을 접수해주시면 맞춤 견적을 안내드립니다.</p>
-    <a href="consult.html" class="btn-primary">무료 상담 받기 &rarr;</a>
+  <div class="container">
+    <div class="fade-up">
+      <h2>정확한 비용이<br>궁금하시다면.</h2>
+      <p>사건 내용을 접수해주시면 맞춤 견적을 안내드립니다.</p>
+      <a href="consult.html" class="btn-primary">무료 상담 받기 →</a>
+    </div>
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
-  <p>2026 THE H 채권회수센터. All rights reserved.</p>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo">THE H</div>
+      <p class="footer-desc">황해 채권회수센터는 채권 회수 전문 법무법인입니다.</p>
+    </div>
+    <div class="footer-links-group">
+      <h4>바로가기</h4>
+      <a href="service.html">서비스 소개</a>
+      <a href="cost.html">비용 안내</a>
+      <a href="cases.html">승소 사례</a>
+      <a href="contact.html">상담 신청</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>상담</h4>
+      <a href="consult.html">AI 상담 접수</a>
+      <a href="tel:02-1234-5678">02-1234-5678</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 THE H 채권회수센터. All rights reserved.</span>
+    <span>서울특별시 서초구 법원로 00길 00</span>
+  </div>
 </footer>
 
 <script>

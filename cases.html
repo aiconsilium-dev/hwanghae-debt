@@ -4,47 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>승소 사례 | THE H 채권회수센터</title>
+<meta name="description" content="실제 승소 사례. 대여금, 임금체불, 투자금, 손해배상 — 1,200건 이상의 실적">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0a0a0a; --surface: #171717; --border: #262626;
-  --text: #fafafa; --text-muted: #a3a3a3; --text-dim: #737373;
-  --accent: #DC2626; --accent-hover: #B91C1C; --accent-light: rgba(220,38,38,0.1);
-}
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  line-height: 1.6; -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  background: rgba(10,10,10,0.85); border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
-.nav-links { display: flex; align-items: center; gap: 36px; }
-.nav-links a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; letter-spacing: 0.5px; }
-.nav-links a:hover { color: var(--text); }
-.nav-cta { background: var(--accent) !important; color: var(--text) !important; padding: 10px 24px !important; border-radius: 6px; font-weight: 600 !important; }
-
+/* ── Page Hero ── */
 .page-hero {
-  padding: 180px 48px 80px;
-  max-width: 900px;
+  padding: 200px 0 120px;
 }
-.page-label { font-size: 13px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 24px; }
-.page-hero h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 800; letter-spacing: -3px; line-height: 1.1; margin-bottom: 24px; }
-.page-hero p { font-size: 18px; color: var(--text-muted); max-width: 600px; line-height: 1.8; }
 
-/* Timeline */
+.page-hero p {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.8;
+  margin-top: 32px;
+}
+
+/* ── Timeline ── */
 .timeline-section {
-  padding: 80px 48px 160px;
-  max-width: 900px;
-  margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+
+.timeline-wrap {
+  max-width: 800px;
 }
 
 .timeline {
@@ -64,15 +48,7 @@ nav {
 
 .timeline-item {
   position: relative;
-  margin-bottom: 60px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s, transform 0.6s;
-}
-
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0);
+  margin-bottom: 48px;
 }
 
 .timeline-item:last-child { margin-bottom: 0; }
@@ -89,29 +65,33 @@ nav {
 }
 
 .timeline-date {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--accent);
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin-bottom: 12px;
 }
 
 .timeline-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius);
   padding: 32px;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
 }
 
-.timeline-card:hover { border-color: #333; }
+.timeline-card:hover {
+  background: var(--surface-hover);
+  border-color: rgba(255,255,255,0.15);
+}
 
 .timeline-tag {
   display: inline-block;
   background: var(--accent-light);
   color: var(--accent);
   padding: 4px 12px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -119,23 +99,19 @@ nav {
 }
 
 .timeline-card h3 {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
   margin-bottom: 12px;
-  line-height: 1.3;
 }
 
 .timeline-card p {
   color: var(--text-muted);
   font-size: 15px;
   line-height: 1.7;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .timeline-result {
   display: flex;
-  gap: 32px;
+  gap: 40px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
 }
@@ -143,67 +119,48 @@ nav {
 .result-item {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .result-label {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-dim);
-  letter-spacing: 1px;
-  margin-bottom: 4px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .result-value {
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.5px;
 }
 
 .result-value.accent { color: var(--accent); }
 
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--accent); color: var(--text);
-  padding: 16px 36px; border-radius: 8px;
-  font-size: 16px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;
-}
-.btn-primary:hover { background: var(--accent-hover); }
-
+/* ── CTA ── */
 .cta-section {
-  padding: 160px 48px; text-align: center;
   border-top: 1px solid var(--border);
-}
-.cta-section h2 {
-  font-size: clamp(36px, 5vw, 64px); font-weight: 800;
-  letter-spacing: -2px; margin-bottom: 16px; line-height: 1.1;
-}
-.cta-section p { color: var(--text-muted); margin-bottom: 40px; font-size: 18px; }
-
-footer {
-  padding: 48px; border-top: 1px solid var(--border);
-  text-align: center; color: var(--text-dim); font-size: 13px;
+  text-align: center;
 }
 
-.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-.mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+.cta-section h2 { margin-bottom: 16px; }
+.cta-section > .container > div > p {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  nav { padding: 16px 24px; }
-  .page-hero { padding: 140px 24px 60px; }
-  .timeline-section { padding: 40px 24px 100px; }
+  .page-hero { padding: 140px 0 80px; }
   .timeline-result { flex-direction: column; gap: 16px; }
-  .cta-section { padding: 100px 24px; }
-  .mobile-toggle { display: block; }
-  .nav-links {
-    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-    background: var(--surface); flex-direction: column; padding: 80px 32px;
-    gap: 24px; transition: right 0.3s; border-left: 1px solid var(--border);
-  }
-  .nav-links.open { right: 0; }
 }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- Navigation -->
+<nav class="always-glass" id="nav">
   <a href="index.html" class="nav-logo">THE H</a>
   <div class="nav-links" id="navLinks">
     <a href="service.html">서비스</a>
@@ -211,175 +168,212 @@ footer {
     <a href="cases.html">사례</a>
     <a href="consult.html" class="nav-cta">상담 접수</a>
   </div>
-  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- Page Hero -->
 <section class="page-hero">
-  <div class="page-label">Cases</div>
-  <h1>실제<br>승소 사례.</h1>
-  <p>의뢰인의 동의하에 공개하는 실제 사례입니다. 개인정보는 비식별 처리되었습니다.</p>
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Cases</div>
+      <h1>실제<br>승소 사례.</h1>
+      <p>의뢰인의 동의하에 공개하는 실제 사례입니다.<br>개인정보는 비식별 처리되었습니다.</p>
+    </div>
+  </div>
 </section>
 
+<!-- Timeline -->
 <section class="timeline-section">
-  <div class="timeline">
+  <div class="container">
+    <div class="timeline-wrap">
+      <div class="timeline">
 
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">2025. 11</div>
-      <div class="timeline-card">
-        <span class="timeline-tag">대여금</span>
-        <h3>지인에게 빌려준 8,500만원 전액 회수</h3>
-        <p>차용증 없이 계좌이체만 한 사건. 카카오톡 대화 내용과 이체 내역을 증거로 확보하여 지급명령 신청 후 이의 없이 확정. 부동산 강제경매를 통해 전액 회수에 성공했습니다.</p>
-        <div class="timeline-result">
-          <div class="result-item">
-            <span class="result-label">청구액</span>
-            <span class="result-value">8,500만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">회수액</span>
-            <span class="result-value accent">8,500만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">소요 기간</span>
-            <span class="result-value">4개월</span>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025. 11</div>
+          <div class="timeline-card">
+            <span class="timeline-tag">대여금</span>
+            <h3>지인에게 빌려준 8,500만원 전액 회수</h3>
+            <p>차용증 없이 계좌이체만 한 사건. 카카오톡 대화 내용과 이체 내역을 증거로 확보하여 지급명령 신청 후 이의 없이 확정. 부동산 강제경매를 통해 전액 회수에 성공했습니다.</p>
+            <div class="timeline-result">
+              <div class="result-item">
+                <span class="result-label">청구액</span>
+                <span class="result-value">8,500만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">회수액</span>
+                <span class="result-value accent">8,500만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">소요 기간</span>
+                <span class="result-value">4개월</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">2025. 09</div>
-      <div class="timeline-card">
-        <span class="timeline-tag">임금체불</span>
-        <h3>스타트업 퇴사 후 체불임금 2,400만원 회수</h3>
-        <p>6개월치 급여와 퇴직금이 체불된 사건. 노동청 진정과 민사소송을 동시 진행하여 사업주를 압박. 최종적으로 조정을 통해 체불 임금 전액과 지연이자까지 수령했습니다.</p>
-        <div class="timeline-result">
-          <div class="result-item">
-            <span class="result-label">청구액</span>
-            <span class="result-value">2,400만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">회수액</span>
-            <span class="result-value accent">2,640만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">소요 기간</span>
-            <span class="result-value">3개월</span>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025. 09</div>
+          <div class="timeline-card">
+            <span class="timeline-tag">임금체불</span>
+            <h3>스타트업 퇴사 후 체불임금 2,400만원 회수</h3>
+            <p>6개월치 급여와 퇴직금이 체불된 사건. 노동청 진정과 민사소송을 동시 진행하여 사업주를 압박. 최종적으로 조정을 통해 체불 임금 전액과 지연이자까지 수령했습니다.</p>
+            <div class="timeline-result">
+              <div class="result-item">
+                <span class="result-label">청구액</span>
+                <span class="result-value">2,400만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">회수액</span>
+                <span class="result-value accent">2,640만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">소요 기간</span>
+                <span class="result-value">3개월</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">2025. 06</div>
-      <div class="timeline-card">
-        <span class="timeline-tag">투자금</span>
-        <h3>코인 투자 사기 피해금 1억 2천만원 중 9,800만원 회수</h3>
-        <p>원금 보장을 약속하며 코인 투자를 권유받아 피해를 입은 사건. 형사 고소를 통해 상대방을 압박하고, 민사소송에서 승소. 상대방 부동산 가압류 후 경매를 통해 대부분을 회수했습니다.</p>
-        <div class="timeline-result">
-          <div class="result-item">
-            <span class="result-label">청구액</span>
-            <span class="result-value">1억 2,000만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">회수액</span>
-            <span class="result-value accent">9,800만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">소요 기간</span>
-            <span class="result-value">8개월</span>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025. 06</div>
+          <div class="timeline-card">
+            <span class="timeline-tag">투자금</span>
+            <h3>코인 투자 사기 피해금 1억 2천만원 중 9,800만원 회수</h3>
+            <p>원금 보장을 약속하며 코인 투자를 권유받아 피해를 입은 사건. 형사 고소를 통해 상대방을 압박하고, 민사소송에서 승소. 상대방 부동산 가압류 후 경매를 통해 대부분을 회수했습니다.</p>
+            <div class="timeline-result">
+              <div class="result-item">
+                <span class="result-label">청구액</span>
+                <span class="result-value">1억 2,000만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">회수액</span>
+                <span class="result-value accent">9,800만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">소요 기간</span>
+                <span class="result-value">8개월</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">2025. 03</div>
-      <div class="timeline-card">
-        <span class="timeline-tag">손해배상</span>
-        <h3>하도급 대금 미지급 손해배상 5,200만원 승소</h3>
-        <p>건설 하도급 대금을 지급하지 않은 원청업체를 상대로 손해배상 청구. 하도급법 위반 사실을 입증하여 원금과 함께 지연이자 및 손해배상금을 포함한 판결을 받았습니다.</p>
-        <div class="timeline-result">
-          <div class="result-item">
-            <span class="result-label">청구액</span>
-            <span class="result-value">4,800만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">인용액</span>
-            <span class="result-value accent">5,200만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">소요 기간</span>
-            <span class="result-value">6개월</span>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025. 03</div>
+          <div class="timeline-card">
+            <span class="timeline-tag">손해배상</span>
+            <h3>하도급 대금 미지급 손해배상 5,200만원 승소</h3>
+            <p>건설 하도급 대금을 지급하지 않은 원청업체를 상대로 손해배상 청구. 하도급법 위반 사실을 입증하여 원금과 함께 지연이자 및 손해배상금을 포함한 판결을 받았습니다.</p>
+            <div class="timeline-result">
+              <div class="result-item">
+                <span class="result-label">청구액</span>
+                <span class="result-value">4,800만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">인용액</span>
+                <span class="result-value accent">5,200만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">소요 기간</span>
+                <span class="result-value">6개월</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">2024. 12</div>
-      <div class="timeline-card">
-        <span class="timeline-tag">대여금</span>
-        <h3>사업 자금 3억원 대여금 회수</h3>
-        <p>사업 동업자에게 빌려준 자금을 회수한 사건. 차용증은 있었으나 상대방이 변제를 거부. 가압류를 선행하고 소송을 진행하여 전액 승소. 예금채권 압류로 회수에 성공했습니다.</p>
-        <div class="timeline-result">
-          <div class="result-item">
-            <span class="result-label">청구액</span>
-            <span class="result-value">3억원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">회수액</span>
-            <span class="result-value accent">3억 1,200만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">소요 기간</span>
-            <span class="result-value">5개월</span>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024. 12</div>
+          <div class="timeline-card">
+            <span class="timeline-tag">대여금</span>
+            <h3>사업 자금 3억원 대여금 회수</h3>
+            <p>사업 동업자에게 빌려준 자금을 회수한 사건. 차용증은 있었으나 상대방이 변제를 거부. 가압류를 선행하고 소송을 진행하여 전액 승소. 예금채권 압류로 회수에 성공했습니다.</p>
+            <div class="timeline-result">
+              <div class="result-item">
+                <span class="result-label">청구액</span>
+                <span class="result-value">3억원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">회수액</span>
+                <span class="result-value accent">3억 1,200만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">소요 기간</span>
+                <span class="result-value">5개월</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">2024. 08</div>
-      <div class="timeline-card">
-        <span class="timeline-tag">임금체불</span>
-        <h3>프리랜서 용역비 1,800만원 회수</h3>
-        <p>IT 프리랜서로 일하고 용역비를 받지 못한 사건. 근로자성을 인정받아 노동청 진정과 함께 민사소송을 진행. 체불 용역비 전액과 지연손해금을 회수했습니다.</p>
-        <div class="timeline-result">
-          <div class="result-item">
-            <span class="result-label">청구액</span>
-            <span class="result-value">1,800만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">회수액</span>
-            <span class="result-value accent">1,980만원</span>
-          </div>
-          <div class="result-item">
-            <span class="result-label">소요 기간</span>
-            <span class="result-value">4개월</span>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024. 08</div>
+          <div class="timeline-card">
+            <span class="timeline-tag">임금체불</span>
+            <h3>프리랜서 용역비 1,800만원 회수</h3>
+            <p>IT 프리랜서로 일하고 용역비를 받지 못한 사건. 근로자성을 인정받아 노동청 진정과 함께 민사소송을 진행. 체불 용역비 전액과 지연손해금을 회수했습니다.</p>
+            <div class="timeline-result">
+              <div class="result-item">
+                <span class="result-label">청구액</span>
+                <span class="result-value">1,800만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">회수액</span>
+                <span class="result-value accent">1,980만원</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">소요 기간</span>
+                <span class="result-value">4개월</span>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
-
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section">
-  <div>
-    <h2>당신의 사건도<br>해결할 수 있습니다.</h2>
-    <p>무료 상담으로 승소 가능성을 확인하세요.</p>
-    <a href="consult.html" class="btn-primary">AI 상담 접수 &rarr;</a>
+  <div class="container">
+    <div class="fade-up">
+      <h2>당신의 사건도<br>해결할 수 있습니다.</h2>
+      <p>무료 상담으로 승소 가능성을 확인하세요.</p>
+      <a href="consult.html" class="btn-primary">AI 상담 접수 →</a>
+    </div>
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
-  <p>2026 THE H 채권회수센터. All rights reserved.</p>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo">THE H</div>
+      <p class="footer-desc">황해 채권회수센터는 채권 회수 전문 법무법인입니다.</p>
+    </div>
+    <div class="footer-links-group">
+      <h4>바로가기</h4>
+      <a href="service.html">서비스 소개</a>
+      <a href="cost.html">비용 안내</a>
+      <a href="cases.html">승소 사례</a>
+      <a href="contact.html">상담 신청</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>상담</h4>
+      <a href="consult.html">AI 상담 접수</a>
+      <a href="tel:02-1234-5678">02-1234-5678</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 THE H 채권회수센터. All rights reserved.</span>
+    <span>서울특별시 서초구 법원로 00길 00</span>
+  </div>
 </footer>
 
 <script>
@@ -389,7 +383,7 @@ document.getElementById('mobileToggle').addEventListener('click', () => {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

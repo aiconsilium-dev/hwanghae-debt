@@ -4,75 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI 상담 접수 | THE H 채권회수센터</title>
+<meta name="description" content="AI 채팅 상담으로 간편하게 채권회수 상담을 접수하세요.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0a0a0a; --surface: #171717; --border: #262626;
-  --text: #fafafa; --text-muted: #a3a3a3; --text-dim: #737373;
-  --accent: #DC2626; --accent-hover: #B91C1C; --accent-light: rgba(220,38,38,0.1);
-}
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
-  min-height: 100vh;
-}
-a { color: inherit; text-decoration: none; }
+body { min-height: 100vh; }
 
-/* Nav */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  background: rgba(10,10,10,0.85); border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
-.nav-links { display: flex; align-items: center; gap: 36px; }
-.nav-links a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; letter-spacing: 0.5px; }
-.nav-links a:hover { color: var(--text); }
-.nav-cta {
-  background: var(--accent) !important; color: var(--text) !important;
-  padding: 10px 24px !important; border-radius: 6px; font-weight: 600 !important;
-}
-
-/* Chat Container */
+/* ── Consult Layout ── */
 .consult-wrapper {
-  max-width: 680px; margin: 0 auto;
-  padding: 120px 24px 60px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
   min-height: 100vh;
 }
 
 .consult-header {
-  text-align: center; margin-bottom: 48px;
+  text-align: center;
+  margin-bottom: 48px;
 }
 
 .consult-header h1 {
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 800; letter-spacing: -2px;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
   margin-bottom: 12px;
 }
 
-.consult-header p { color: var(--text-muted); font-size: 16px; }
+.consult-header p {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
 
-/* Chat */
+/* ── Chat ── */
 .chat-container {
-  display: flex; flex-direction: column; gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .chat-bubble {
   max-width: 80%;
   padding: 16px 20px;
-  border-radius: 16px;
+  border-radius: var(--radius);
   font-size: 15px;
   line-height: 1.6;
-  animation: bubbleIn 0.4s ease;
+  animation: bubbleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes bubbleIn {
   from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .chat-ai {
@@ -83,33 +67,39 @@ nav {
 }
 
 .chat-ai-label {
-  font-size: 12px; color: var(--accent); font-weight: 600;
-  margin-bottom: 6px; letter-spacing: 1px;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .chat-user {
   align-self: flex-end;
   background: var(--accent);
-  color: var(--text);
+  color: white;
   border-bottom-right-radius: 4px;
 }
 
-/* Option Buttons */
+/* ── Options ── */
 .chat-options {
-  display: flex; flex-wrap: wrap; gap: 10px;
-  animation: bubbleIn 0.4s ease;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  animation: bubbleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .chat-option-btn {
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-size: 15px;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .chat-option-btn:hover {
@@ -117,9 +107,11 @@ nav {
   background: var(--accent-light);
 }
 
-/* Input Area */
+/* ── Input ── */
 .chat-input-area {
-  display: flex; gap: 10px; animation: bubbleIn 0.4s ease;
+  display: flex;
+  gap: 10px;
+  animation: bubbleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .chat-input {
@@ -127,12 +119,12 @@ nav {
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 14px 20px;
-  border-radius: 10px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
   font-size: 15px;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.3s;
+  transition: border-color 0.2s;
 }
 
 .chat-input:focus { border-color: var(--accent); }
@@ -140,113 +132,120 @@ nav {
 .chat-send-btn {
   background: var(--accent);
   border: none;
-  color: var(--text);
+  color: white;
   padding: 14px 24px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   font-size: 15px;
   font-family: inherit;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.2s;
   white-space: nowrap;
 }
 
 .chat-send-btn:hover { background: var(--accent-hover); }
 
-/* Upload Area */
+/* ── Upload ── */
 .upload-area {
-  border: 2px dashed var(--border);
+  border: 1px dashed rgba(255,255,255,0.2);
   background: var(--surface);
-  border-radius: 12px;
-  padding: 48px 24px;
+  border-radius: var(--radius);
+  padding: 40px 24px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s;
-  animation: bubbleIn 0.4s ease;
+  transition: all 0.2s;
+  animation: bubbleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.upload-area:hover { border-color: var(--accent); background: var(--accent-light); }
+.upload-area:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
 
-.upload-area p { color: var(--text-muted); font-size: 14px; margin-top: 8px; }
-
-.upload-title { font-size: 16px; color: var(--text); font-weight: 600; }
+.upload-title { font-size: 16px; color: var(--text); font-weight: 500; }
+.upload-area p { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
 
 .file-list { margin-top: 12px; }
 
 .file-item {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--bg); padding: 8px 14px; border-radius: 6px;
-  font-size: 13px; color: var(--text-muted); margin: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 4px;
+  border: 1px solid var(--border);
 }
 
 .file-remove {
-  background: none; border: none; color: var(--accent);
-  cursor: pointer; font-size: 16px; padding: 0 4px;
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 2px;
+  line-height: 1;
 }
 
-/* Contact Form */
+/* ── Contact Form ── */
 .contact-inputs {
-  display: flex; flex-direction: column; gap: 12px;
-  animation: bubbleIn 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: bubbleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Complete */
+/* ── Complete Card ── */
 .complete-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 48px 32px;
   text-align: center;
-  animation: bubbleIn 0.5s ease;
+  animation: bubbleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .complete-card h2 {
-  font-size: 28px; font-weight: 800;
-  letter-spacing: -1px; margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
 }
 
 .complete-number {
-  font-size: 14px; color: var(--accent);
-  font-weight: 600; letter-spacing: 2px; margin-bottom: 24px;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
 }
 
-.complete-card p { color: var(--text-muted); font-size: 15px; }
+.complete-card p { color: var(--text-muted); font-size: 15px; line-height: 1.7; }
 
+/* Skip button */
 .skip-btn {
   background: none;
   border: 1px solid var(--border);
   color: var(--text-muted);
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
   font-size: 14px;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 8px;
+  transition: all 0.2s;
 }
 
-.skip-btn:hover {
-  border-color: var(--text-dim);
-  color: var(--text);
-}
-
-.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-.mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
-@media (max-width: 768px) {
-  nav { padding: 16px 24px; }
-  .mobile-toggle { display: block; }
-  .nav-links {
-    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-    background: var(--surface); flex-direction: column; padding: 80px 32px;
-    gap: 24px; transition: right 0.3s; border-left: 1px solid var(--border);
-  }
-  .nav-links.open { right: 0; }
-}
+.skip-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- Navigation -->
+<nav class="always-glass" id="nav">
   <a href="index.html" class="nav-logo">THE H</a>
   <div class="nav-links" id="navLinks">
     <a href="service.html">서비스</a>
@@ -278,27 +277,27 @@ const flows = {
     { q: '상대방은 누구인가요?', options: ['개인', '법인'], key: 'target' },
     { q: '얼마를 빌려주셨나요?', input: true, placeholder: '예: 500만원', key: 'amount' },
     { q: '언제 빌려주셨나요?', input: true, placeholder: '예: 2024년 3월', key: 'date', skip: '정확히 모름' },
-    { q: '차용증이나 이체 내역이 있나요?', options: ['차용증', '이체내역', '카톡 대화', '없음'], key: 'evidence', multi: true },
+    { q: '차용증이나 이체 내역이 있나요?', options: ['차용증', '이체내역', '카톡 대화', '없음'], key: 'evidence' },
     { q: '내용증명을 보낸 적 있나요?', options: ['보냈음', '안 보냈음'], key: 'hasNotice' }
   ],
   wage: [
     { q: '근무 형태는 어떻게 되나요?', options: ['정규직', '계약직', '일용직', '프리랜서'], key: 'target' },
     { q: '체불된 금액은 대략 얼마인가요?', input: true, placeholder: '예: 300만원', key: 'amount' },
     { q: '마지막 근무일은 언제인가요?', input: true, placeholder: '예: 2025년 12월', key: 'date', skip: '정확히 모름' },
-    { q: '근로계약서나 급여명세서가 있나요?', options: ['근로계약서', '급여명세서', '출퇴근 기록', '없음'], key: 'evidence', multi: true },
+    { q: '근로계약서나 급여명세서가 있나요?', options: ['근로계약서', '급여명세서', '출퇴근 기록', '없음'], key: 'evidence' },
     { q: '노동청에 진정을 넣은 적 있나요?', options: ['있음', '없음'], key: 'hasNotice' }
   ],
   invest: [
     { q: '어떤 유형의 투자였나요?', options: ['주식/코인', '부동산', '사업 투자', '기타'], key: 'target' },
     { q: '투자 금액은 얼마인가요?', input: true, placeholder: '예: 2,000만원', key: 'amount' },
     { q: '언제 투자하셨나요?', input: true, placeholder: '예: 2024년 6월', key: 'date', skip: '정확히 모름' },
-    { q: '투자 관련 증거가 있나요?', options: ['계약서', '이체내역', '대화 기록', '없음'], key: 'evidence', multi: true },
+    { q: '투자 관련 증거가 있나요?', options: ['계약서', '이체내역', '대화 기록', '없음'], key: 'evidence' },
     { q: '경찰 신고를 하셨나요?', options: ['했음', '안 했음'], key: 'hasNotice' }
   ],
   etc: [
     { q: '어떤 상황인지 간단히 알려주세요.', input: true, placeholder: '상황을 입력해주세요', key: 'target' },
     { q: '관련 금액은 얼마인가요?', input: true, placeholder: '예: 1,000만원', key: 'amount' },
-    { q: '증거 자료가 있나요?', options: ['계약서', '이체내역', '메시지 기록', '없음'], key: 'evidence', multi: true }
+    { q: '증거 자료가 있나요?', options: ['계약서', '이체내역', '메시지 기록', '없음'], key: 'evidence' }
   ]
 };
 
@@ -327,10 +326,7 @@ function addOptions(options, callback) {
     const btn = document.createElement('button');
     btn.className = 'chat-option-btn';
     btn.textContent = opt;
-    btn.onclick = () => {
-      div.remove();
-      callback(opt);
-    };
+    btn.onclick = () => { div.remove(); callback(opt); };
     div.appendChild(btn);
   });
   chat.appendChild(div);
@@ -363,15 +359,10 @@ function addInput(placeholder, callback, skipText) {
   let skipDiv = null;
   if (skipText) {
     skipDiv = document.createElement('div');
-    skipDiv.style.cssText = 'animation: bubbleIn 0.4s ease;';
     const skipBtn = document.createElement('button');
     skipBtn.className = 'skip-btn';
     skipBtn.textContent = skipText;
-    skipBtn.onclick = () => {
-      div.remove();
-      skipDiv.remove();
-      callback(skipText);
-    };
+    skipBtn.onclick = () => { div.remove(); skipDiv.remove(); callback(skipText); };
     skipDiv.appendChild(skipBtn);
     chat.appendChild(skipDiv);
   }
@@ -400,10 +391,10 @@ function addUpload(callback) {
   function renderFiles() {
     const list = div.querySelector('#fileList');
     list.innerHTML = files.map((f, i) =>
-      `<span class="file-item">${f.name} <button class="file-remove" data-i="${i}">x</button></span>`
+      `<span class="file-item">${f.name} <button class="file-remove" data-i="${i}">&times;</button></span>`
     ).join('');
     list.querySelectorAll('.file-remove').forEach(btn => {
-      btn.onclick = (e) => { e.stopPropagation(); files.splice(btn.dataset.i, 1); renderFiles(); };
+      btn.onclick = (e) => { e.stopPropagation(); files.splice(+btn.dataset.i, 1); renderFiles(); };
     });
   }
 
@@ -456,7 +447,7 @@ function showComplete() {
   div.innerHTML = `
     <h2>접수가 완료되었습니다</h2>
     <div class="complete-number">접수번호 ${num}</div>
-    <p>담당 변호사가 1영업일 내 연락드리겠습니다.</p>
+    <p>담당 변호사가 1영업일 내 연락드리겠습니다.<br>평일 오전 9시 ~ 오후 6시 운영</p>
   `;
   chat.appendChild(div);
   scrollBottom();
@@ -469,13 +460,11 @@ function scrollBottom() {
 function runFlow() {
   const flow = flows[formData.type];
   if (!flow || currentStep >= flow.length) {
-    // Upload step
     setTimeout(() => {
       addAI('증거가 될 자료가 있으면 올려주세요.');
       addUpload((files) => {
         formData.files = files;
-        if (files.length) addUser(files.length + '개 파일 첨부');
-        else addUser('건너뛰기');
+        addUser(files.length ? files.length + '개 파일 첨부' : '건너뛰기');
         setTimeout(() => {
           addAI('마지막으로 연락처를 남겨주세요.');
           addContactForm((name, phone) => {
