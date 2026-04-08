@@ -9,62 +9,168 @@
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-/* ── Hero — 좌정렬 + 3D ── */
+/* ── Hero — MeritFirst 스타일 중앙 정렬 + 격자 ── */
 .hero {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-top: 80px;
+  justify-content: center;
+  padding: 120px 24px 80px;
   position: relative;
   overflow: hidden;
+  text-align: center;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 40px;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+.hero-headline {
+  font-family: 'Georgia', 'Times New Roman', 'Pretendard', serif;
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: 1.15;
+  color: var(--text);
+  max-width: 860px;
+  margin: 0 auto 64px;
 }
 
-.hero-content {
-  max-width: 640px;
+.hero-headline em {
+  font-style: italic;
+  color: var(--accent);
 }
 
-.hero-eyebrow {
+/* ── Hero Card ── */
+.hero-card-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-card-label {
   font-size: 12px;
   color: var(--text-dim);
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 600;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 
-.hero h1 {
-  margin-bottom: 28px;
-  line-height: 1.05;
+.hero-card {
+  background: linear-gradient(135deg, #fff 0%, #fef2f2 50%, #fff 100%);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
 }
 
-.hero-sub {
-  font-size: 17px;
-  color: var(--text-muted);
-  max-width: 440px;
-  line-height: 1.8;
-  margin-bottom: 24px;
+.hero-card-input {
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-family: 'Pretendard', sans-serif;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 20px;
 }
 
-.hero-pills {
+.hero-card-input::placeholder {
+  color: var(--text-dim);
+}
+
+.hero-card-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+}
+
+.hero-card-buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 36px;
+  gap: 12px;
 }
 
-.hero-cta-group {
+.hero-card-buttons .btn-primary,
+.hero-card-buttons .btn-outline {
+  flex: 1;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+/* ── Nav — MeritFirst 스타일 (좌 로고 / 중앙 메뉴 / 우 버튼) ── */
+nav {
+  justify-content: center;
+}
+
+.nav-left {
+  position: absolute;
+  left: 48px;
+}
+
+.nav-right {
+  position: absolute;
+  right: 48px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-center a {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: color 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.nav-center a:hover { color: var(--text); }
+
+.nav-btn-ghost {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.nav-btn-ghost:hover {
+  border-color: rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.02);
+}
+
+.nav-btn-accent {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.nav-btn-accent:hover {
+  background: var(--accent-hover);
 }
 
 /* ── Stats ── */
@@ -174,10 +280,27 @@
 }
 
 /* ── Mobile ── */
+@media (max-width: 1024px) {
+  .hero-headline { font-size: clamp(32px, 5vw, 56px); }
+}
+
 @media (max-width: 768px) {
-  .hero-inner { grid-template-columns: 1fr; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-headline { font-size: 32px; letter-spacing: -1px; margin-bottom: 48px; }
+  .hero-card { padding: 24px; }
+  .hero-card-buttons { flex-direction: column; }
   .stats-grid { grid-template-columns: 1fr; gap: 40px; }
   .services-grid { grid-template-columns: 1fr; }
+
+  /* 모바일 네비 재배치 */
+  .nav-left { position: static; }
+  .nav-right { position: static; gap: 8px; }
+  .nav-center { display: none; }
+  nav {
+    justify-content: space-between;
+  }
+
+  .nav-right .nav-btn-ghost { display: none; }
 }
 </style>
 </head>
@@ -188,47 +311,45 @@
   <div class="loading-text"><span>THE H</span> 채권회수센터</div>
 </div>
 
-<!-- Navigation -->
+<!-- Navigation — MeritFirst 구조: 좌 로고 / 중앙 메뉴 / 우 버튼 -->
 <nav id="nav">
-  <a href="index.html" class="nav-logo">THE H</a>
-  <div class="nav-links" id="navLinks">
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">THE H</a>
+  </div>
+  <div class="nav-center">
     <a href="service.html">서비스</a>
     <a href="cost.html">비용</a>
     <a href="cases.html">사례</a>
-    <a href="consult.html" class="nav-cta">상담 접수</a>
+    <a href="contact.html">문의</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-btn-ghost">Login</a>
+    <a href="consult.html" class="nav-btn-accent">무료 상담</a>
   </div>
   <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- Hero -->
+<!-- Hero — MeritFirst 중앙 정렬 + 격자 배경 + 카드 UI -->
 <section class="hero">
-  <!-- 3D Orb Background -->
-  <div class="hero-bg">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="orb orb-4"></div>
-  </div>
+  <h1 class="hero-headline fade-up">
+    받아야 할 돈을 포기하면,<br>손해는 <em>당신의 몫</em>입니다.
+  </h1>
 
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content fade-up">
-        <div class="hero-eyebrow">채권회수 전문 법무법인</div>
-        <h1>받아야 할 돈,<br>포기하지 마세요.</h1>
-        <p class="hero-sub">대여금 · 미수금 · 투자금 · 용역비<br>전담 변호사가 처음부터 끝까지 책임집니다.</p>
-        <div class="hero-pills">
-          <span class="pill-badge">지급명령 55만원부터</span>
-          <span class="pill-badge">성공보수제</span>
-          <span class="pill-badge">전국 비대면</span>
-        </div>
-        <div class="hero-cta-group">
-          <a href="consult.html" class="btn-primary">무료 상담 받기 →</a>
-          <a href="cost.html" class="btn-outline">비용 안내</a>
-        </div>
+  <div class="hero-card-section fade-up">
+    <div class="hero-card-label">지금 바로 무료 상담을 받아보세요</div>
+    <div class="hero-card">
+      <input
+        type="text"
+        class="hero-card-input"
+        placeholder="어떤 채권을 회수하고 싶으신가요?"
+        id="heroInput"
+      >
+      <div class="hero-card-buttons">
+        <a href="consult.html" class="btn-primary" id="heroAiBtn">AI 상담 시작</a>
+        <a href="contact.html" class="btn-outline">변호사 연결</a>
       </div>
-      <div></div>
     </div>
   </div>
 </section>
@@ -357,7 +478,30 @@ window.addEventListener('scroll', () => {
 
 // 모바일 메뉴
 document.getElementById('mobileToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+  const navCenter = document.querySelector('.nav-center');
+  const navRight = document.querySelector('.nav-right');
+  // 간단한 모바일 토글 — nav-center/right를 보이기/숨기기
+  navCenter.style.display = navCenter.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// 히어로 입력 → AI 상담으로 전달
+document.getElementById('heroInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = e.target.value.trim();
+    if (val) {
+      window.location.href = 'consult.html?q=' + encodeURIComponent(val);
+    } else {
+      window.location.href = 'consult.html';
+    }
+  }
+});
+
+document.getElementById('heroAiBtn').addEventListener('click', (e) => {
+  const val = document.getElementById('heroInput').value.trim();
+  if (val) {
+    e.preventDefault();
+    window.location.href = 'consult.html?q=' + encodeURIComponent(val);
+  }
 });
 
 // 스크롤 페이드인
