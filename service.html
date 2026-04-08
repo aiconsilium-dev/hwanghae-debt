@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서비스 소개 | THE H 채권회수센터</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a; --surface: #171717; --border: #262626;
+  --text: #fafafa; --text-muted: #a3a3a3; --text-dim: #737373;
+  --accent: #DC2626; --accent-hover: #B91C1C; --accent-light: rgba(220,38,38,0.1);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  background: rgba(10,10,10,0.85); border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; letter-spacing: 0.5px; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { background: var(--accent) !important; color: var(--text) !important; padding: 10px 24px !important; border-radius: 6px; font-weight: 600 !important; }
+
+.page-hero {
+  padding: 180px 48px 120px;
+  max-width: 900px;
+}
+
+.page-label {
+  font-size: 13px; color: var(--accent); letter-spacing: 3px;
+  text-transform: uppercase; font-weight: 600; margin-bottom: 24px;
+}
+
+.page-hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 800; letter-spacing: -3px;
+  line-height: 1.1; margin-bottom: 24px;
+}
+
+.page-hero p {
+  font-size: 18px; color: var(--text-muted);
+  max-width: 600px; line-height: 1.8;
+}
+
+/* Service Blocks */
+.service-block {
+  padding: 120px 48px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-block:nth-child(even) { direction: rtl; }
+.service-block:nth-child(even) > * { direction: ltr; }
+
+.service-info h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800; letter-spacing: -1.5px;
+  margin-bottom: 20px; line-height: 1.2;
+}
+
+.service-info > p {
+  color: var(--text-muted);
+  font-size: 16px; line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.service-detail-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.detail-section { margin-bottom: 28px; }
+.detail-section:last-child { margin-bottom: 0; }
+
+.detail-section h3 {
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.detail-list {
+  list-style: none;
+}
+
+.detail-list li {
+  color: var(--text-muted);
+  font-size: 15px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-list li:last-child { border-bottom: none; }
+
+.detail-list li span { color: var(--text); font-weight: 500; }
+
+.service-steps {
+  counter-reset: step;
+}
+
+.step-item {
+  position: relative;
+  padding-left: 48px;
+  padding-bottom: 32px;
+  border-left: 1px solid var(--border);
+  margin-left: 16px;
+}
+
+.step-item:last-child { border-left: none; padding-bottom: 0; }
+
+.step-item::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: -17px;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.step-item h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.step-item p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: var(--text);
+  padding: 16px 36px; border-radius: 8px;
+  font-size: 16px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.3s;
+}
+.btn-primary:hover { background: var(--accent-hover); }
+
+.cta-section {
+  padding: 160px 48px; text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cta-section h2 {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800; letter-spacing: -2px;
+  margin-bottom: 40px; line-height: 1.1;
+}
+
+footer {
+  padding: 48px; border-top: 1px solid var(--border);
+  text-align: center; color: var(--text-dim); font-size: 13px;
+}
+
+.fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .page-hero { padding: 140px 24px 80px; }
+  .service-block { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+  .service-block:nth-child(even) { direction: ltr; }
+  .cta-section { padding: 100px 24px; }
+  .mobile-toggle { display: block; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+    background: var(--surface); flex-direction: column; padding: 80px 32px;
+    gap: 24px; transition: right 0.3s; border-left: 1px solid var(--border);
+  }
+  .nav-links.open { right: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">THE H</a>
+  <div class="nav-links" id="navLinks">
+    <a href="service.html">서비스</a>
+    <a href="cost.html">비용</a>
+    <a href="cases.html">사례</a>
+    <a href="consult.html" class="nav-cta">상담 접수</a>
+  </div>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero fade-up">
+  <div class="page-label">Services</div>
+  <h1>채권 회수,<br>전문가에게 맡기세요.</h1>
+  <p>20년간 1,200건 이상의 채권 회수 소송을 수행했습니다. 유형별 전문 변호사가 최적의 전략으로 회수합니다.</p>
+</section>
+
+<div id="loan" class="service-block fade-up">
+  <div class="service-info">
+    <h2>대여금 회수</h2>
+    <p>빌려준 돈을 돌려받지 못하고 계신가요. 차용증이 없어도 이체 내역, 카카오톡 대화 등 간접 증거만으로도 소송이 가능합니다. 내용증명 발송부터 강제집행까지 전 과정을 대리합니다.</p>
+    <div class="service-steps">
+      <div class="step-item">
+        <h4>사건 접수 및 증거 분석</h4>
+        <p>이체내역, 대화기록 등 확보 가능한 증거를 검토합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>내용증명 발송</h4>
+        <p>법적 효력이 있는 내용증명으로 상대방에게 최후 통첩합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>소송 제기</h4>
+        <p>민사소송 또는 지급명령을 신청합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>강제집행</h4>
+        <p>승소 판결 후 재산 조회 및 압류를 진행합니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="service-detail-card">
+    <div class="detail-section">
+      <h3>필요 서류</h3>
+      <div class="detail-list">
+        <li>차용증 또는 각서<span>있으면 유리</span></li>
+        <li>계좌 이체 내역<span>필수</span></li>
+        <li>카카오톡/문자 대화<span>있으면 유리</span></li>
+        <li>녹취록<span>선택</span></li>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>예상 기간</h3>
+      <div class="detail-list">
+        <li>내용증명<span>1~2주</span></li>
+        <li>지급명령<span>2~4주</span></li>
+        <li>민사소송<span>3~6개월</span></li>
+        <li>강제집행<span>1~3개월</span></li>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="wage" class="service-block fade-up">
+  <div class="service-info">
+    <h2>임금 체불</h2>
+    <p>일한 만큼 받는 건 당연한 권리입니다. 체불 임금, 퇴직금, 연차수당, 야근수당까지 전액 회수합니다. 노동청 진정과 민사소송을 병행하여 신속하게 처리합니다.</p>
+    <div class="service-steps">
+      <div class="step-item">
+        <h4>체불 금액 산정</h4>
+        <p>정확한 체불 임금, 퇴직금, 수당을 계산합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>노동청 진정</h4>
+        <p>고용노동부에 진정서를 제출합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>민사소송 병행</h4>
+        <p>필요시 민사소송으로 강제 회수합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>강제집행</h4>
+        <p>사업주 재산에 대한 압류를 진행합니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="service-detail-card">
+    <div class="detail-section">
+      <h3>필요 서류</h3>
+      <div class="detail-list">
+        <li>근로계약서<span>있으면 유리</span></li>
+        <li>급여명세서<span>있으면 유리</span></li>
+        <li>출퇴근 기록<span>있으면 유리</span></li>
+        <li>통장 입금 내역<span>필수</span></li>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>예상 기간</h3>
+      <div class="detail-list">
+        <li>노동청 진정<span>1~3개월</span></li>
+        <li>민사소송<span>3~6개월</span></li>
+        <li>강제집행<span>1~2개월</span></li>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="invest" class="service-block fade-up">
+  <div class="service-info">
+    <h2>투자금 반환</h2>
+    <p>허위 투자 권유, 원금 보장 약속 위반, 다단계 사기. 법적 절차를 통해 투자금을 되찾아 드립니다. 민사와 형사를 병행하여 최대한 회수합니다.</p>
+    <div class="service-steps">
+      <div class="step-item">
+        <h4>사건 분석 및 전략 수립</h4>
+        <p>투자 구조와 법적 쟁점을 분석합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>형사 고소</h4>
+        <p>사기죄로 고소하여 압박합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>민사소송</h4>
+        <p>투자금 반환 청구 소송을 진행합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>재산 보전 및 집행</h4>
+        <p>가압류, 강제집행으로 실제 회수합니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="service-detail-card">
+    <div class="detail-section">
+      <h3>필요 서류</h3>
+      <div class="detail-list">
+        <li>투자 계약서<span>있으면 유리</span></li>
+        <li>이체 내역<span>필수</span></li>
+        <li>대화 기록/녹취<span>있으면 유리</span></li>
+        <li>홍보 자료<span>선택</span></li>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>예상 기간</h3>
+      <div class="detail-list">
+        <li>형사 고소<span>3~6개월</span></li>
+        <li>민사소송<span>6~12개월</span></li>
+        <li>강제집행<span>1~3개월</span></li>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="damage" class="service-block fade-up">
+  <div class="service-info">
+    <h2>손해배상</h2>
+    <p>계약 위반, 불법행위, 명예훼손 등으로 인한 손해를 배상받으세요. 정확한 손해액 산정과 신속한 소송으로 권리를 회복합니다.</p>
+    <div class="service-steps">
+      <div class="step-item">
+        <h4>손해액 산정</h4>
+        <p>실제 손해와 법적 배상 범위를 산정합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>증거 수집 및 보전</h4>
+        <p>증거보전 신청 및 자료 확보를 진행합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>소송 제기</h4>
+        <p>손해배상 청구 소송을 진행합니다.</p>
+      </div>
+      <div class="step-item">
+        <h4>판결 및 집행</h4>
+        <p>승소 판결 후 강제집행합니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="service-detail-card">
+    <div class="detail-section">
+      <h3>필요 서류</h3>
+      <div class="detail-list">
+        <li>계약서<span>있으면 유리</span></li>
+        <li>손해 증빙 자료<span>필수</span></li>
+        <li>감정서/견적서<span>선택</span></li>
+        <li>진단서 (상해 시)<span>선택</span></li>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>예상 기간</h3>
+      <div class="detail-list">
+        <li>소송 전 협의<span>1~2개월</span></li>
+        <li>민사소송<span>6~12개월</span></li>
+        <li>강제집행<span>1~3개월</span></li>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <div class="fade-up">
+    <h2>지금 바로<br>상담받으세요.</h2>
+    <a href="consult.html" class="btn-primary">AI 상담 접수 &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  <p>2026 THE H 채권회수센터. All rights reserved.</p>
+</footer>
+
+<script>
+document.getElementById('mobileToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Hash scroll
+if (location.hash) {
+  setTimeout(() => {
+    const el = document.querySelector(location.hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 300);
+}
+</script>
+</body>
+</html>

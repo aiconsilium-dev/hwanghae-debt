@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상담 신청 | THE H 채권회수센터</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a; --surface: #171717; --border: #262626;
+  --text: #fafafa; --text-muted: #a3a3a3; --text-dim: #737373;
+  --accent: #DC2626; --accent-hover: #B91C1C; --accent-light: rgba(220,38,38,0.1);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  background: rgba(10,10,10,0.85); border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; letter-spacing: 0.5px; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { background: var(--accent) !important; color: var(--text) !important; padding: 10px 24px !important; border-radius: 6px; font-weight: 600 !important; }
+
+.contact-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.contact-info {
+  padding: 120px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-label { font-size: 13px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 24px; }
+
+.contact-info h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800; letter-spacing: -2px;
+  line-height: 1.1; margin-bottom: 24px;
+}
+
+.contact-info > p {
+  color: var(--text-muted);
+  font-size: 16px; line-height: 1.8;
+  margin-bottom: 48px; max-width: 400px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-detail-item h3 {
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.contact-detail-item p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.contact-detail-item a {
+  color: var(--text);
+  transition: color 0.3s;
+}
+
+.contact-detail-item a:hover { color: var(--accent); }
+
+/* Form Side */
+.contact-form-wrapper {
+  background: var(--surface);
+  padding: 120px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--border);
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 440px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus { border-color: var(--accent); }
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 140px;
+}
+
+select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23737373' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--accent);
+  color: var(--text);
+  padding: 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.btn-submit:hover { background: var(--accent-hover); }
+
+.form-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 16px;
+  text-align: center;
+}
+
+footer {
+  padding: 48px; border-top: 1px solid var(--border);
+  text-align: center; color: var(--text-dim); font-size: 13px;
+}
+
+.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .contact-page { grid-template-columns: 1fr; padding-top: 60px; }
+  .contact-info { padding: 100px 24px 60px; }
+  .contact-form-wrapper { padding: 60px 24px; border-left: none; border-top: 1px solid var(--border); }
+  .mobile-toggle { display: block; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+    background: var(--surface); flex-direction: column; padding: 80px 32px;
+    gap: 24px; transition: right 0.3s; border-left: 1px solid var(--border);
+  }
+  .nav-links.open { right: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">THE H</a>
+  <div class="nav-links" id="navLinks">
+    <a href="service.html">서비스</a>
+    <a href="cost.html">비용</a>
+    <a href="cases.html">사례</a>
+    <a href="consult.html" class="nav-cta">상담 접수</a>
+  </div>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="contact-page">
+  <div class="contact-info">
+    <div class="page-label">Contact</div>
+    <h1>상담을<br>신청하세요.</h1>
+    <p>간단한 정보를 남겨주시면 담당 변호사가 1영업일 내 연락드립니다. 첫 상담은 무료입니다.</p>
+    <div class="contact-details">
+      <div class="contact-detail-item">
+        <h3>전화</h3>
+        <p><a href="tel:02-1234-5678">02-1234-5678</a></p>
+      </div>
+      <div class="contact-detail-item">
+        <h3>이메일</h3>
+        <p><a href="mailto:contact@theh-law.kr">contact@theh-law.kr</a></p>
+      </div>
+      <div class="contact-detail-item">
+        <h3>주소</h3>
+        <p>서울특별시 서초구 법원로 00길 00<br>00빌딩 0층</p>
+      </div>
+      <div class="contact-detail-item">
+        <h3>상담 시간</h3>
+        <p>평일 09:00 ~ 18:00</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-wrapper">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label class="form-label">이름</label>
+        <input class="form-input" type="text" placeholder="홍길동" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">연락처</label>
+        <input class="form-input" type="tel" placeholder="010-1234-5678" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">이메일</label>
+        <input class="form-input" type="email" placeholder="email@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">상담 유형</label>
+        <select class="form-input" required>
+          <option value="" disabled selected>선택해주세요</option>
+          <option>대여금 회수</option>
+          <option>임금 체불</option>
+          <option>투자금 반환</option>
+          <option>손해배상</option>
+          <option>기타</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">상담 내용</label>
+        <textarea class="form-input" placeholder="사건 개요를 간단히 적어주세요."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">상담 신청하기</button>
+      <p class="form-note">제출하신 정보는 상담 목적으로만 사용됩니다.</p>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>2026 THE H 채권회수센터. All rights reserved.</p>
+</footer>
+
+<script>
+document.getElementById('mobileToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  form.innerHTML = '<div style="text-align:center;padding:40px 0"><h2 style="font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:16px">신청이 완료되었습니다</h2><p style="color:var(--text-muted);font-size:15px">담당 변호사가 1영업일 내 연락드리겠습니다.</p></div>';
+}
+</script>
+</body>
+</html>

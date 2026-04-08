@@ -3,1341 +3,642 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>황해 채권회수센터 | THE H</title>
-<meta name="description" content="빌려준 돈, 못 받은 월급, 날린 투자금. 변호사가 끝까지 받아드립니다. 99,000원부터 시작.">
+<title>THE H 채권회수센터</title>
+<meta name="description" content="빌려준 돈, 못 받은 월급, 날린 투자금. 변호사가 끝까지 받아드립니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 <style>
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --red: #DC2626;
-  --red-light: #FEF2F2;
-  --red-100: #FEE2E2;
-  --red-200: #FECACA;
-  --red-600: #DC2626;
-  --red-700: #B91C1C;
-  --red-800: #991B1B;
-  --gray-50: #F9FAFB;
-  --gray-100: #F3F4F6;
-  --gray-400: #9CA3AF;
-  --gray-500: #6B7280;
-  --gray-600: #4B5563;
-  --gray-700: #374151;
-  --gray-800: #1F2937;
-  --gray-900: #111827;
-  --white: #FFFFFF;
-  --font: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --bg: #0a0a0a;
+  --surface: #171717;
+  --border: #262626;
+  --text: #fafafa;
+  --text-muted: #a3a3a3;
+  --text-dim: #737373;
+  --accent: #DC2626;
+  --accent-hover: #B91C1C;
+  --accent-light: rgba(220, 38, 38, 0.1);
 }
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
-}
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
 html { scroll-behavior: smooth; }
+
 body {
-  font-family: var(--font);
-  color: var(--gray-900);
-  background: var(--white);
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   line-height: 1.6;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* ===== LOADING SCREEN ===== */
-#loading-screen {
-  position: fixed; inset: 0; z-index: 9999;
-  background: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column;
-  transition: opacity 0.6s ease;
+a { color: inherit; text-decoration: none; }
+
+/* ── Loading Screen ── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
-#loading-screen.fade-out { opacity: 0; pointer-events: none; }
-#loading-screen .brand {
-  font-size: 28px; font-weight: 800;
-  letter-spacing: 12px; text-transform: uppercase;
-  color: var(--gray-900);
+
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-text {
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 200;
+  letter-spacing: 6px;
+  color: var(--text);
   opacity: 0;
   animation: loadFadeIn 1.5s ease forwards;
 }
-#loading-screen .brand span { color: var(--red); }
-#loading-screen .sub {
-  font-size: 13px; letter-spacing: 4px; color: var(--gray-400);
-  margin-top: 12px; opacity: 0;
-  animation: loadFadeIn 1.5s ease 0.4s forwards;
-}
-@keyframes loadFadeIn { to { opacity: 1; } }
 
-/* ===== NAVIGATION ===== */
+.loading-text span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@keyframes loadFadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  50% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Navigation ── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 0 48px; height: 72px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(255,255,255,0);
-  backdrop-filter: blur(0px);
-  transition: all 0.3s ease;
-  border-bottom: 1px solid transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s ease;
 }
+
 nav.scrolled {
-  background: rgba(255,255,255,0.95);
+  padding: 16px 48px;
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--gray-100);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10, 10, 10, 0.85);
+  border-bottom: 1px solid var(--border);
 }
-nav .logo {
-  font-size: 18px; font-weight: 800;
-  letter-spacing: 6px; color: var(--gray-900);
-  text-decoration: none;
-}
-nav .logo span { color: var(--red); }
-nav .nav-links { display: flex; gap: 32px; align-items: center; }
-nav .nav-links a {
-  font-size: 14px; color: var(--gray-600);
-  text-decoration: none; font-weight: 500;
-  transition: color 0.2s;
-}
-nav .nav-links a:hover { color: var(--gray-900); }
-nav .nav-cta {
-  background: var(--red); color: var(--white) !important;
-  padding: 10px 24px; border-radius: 8px;
-  font-weight: 600 !important; font-size: 14px;
-  transition: all 0.2s;
-}
-nav .nav-cta:hover { background: var(--red-700); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(220,38,38,0.3); }
 
-/* Mobile nav */
-.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gray-900); margin: 6px 0; transition: 0.3s; }
+.nav-logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
 
-/* ===== HERO ===== */
-#hero {
-  min-height: 100vh; display: flex; align-items: center;
-  padding: 120px 48px 80px;
-  position: relative; overflow: hidden;
-  background: linear-gradient(135deg, var(--white) 0%, var(--red-light) 50%, var(--red-100) 100%);
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
 }
-#hero .hero-content {
-  max-width: 1200px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1.2fr 0.8fr;
-  align-items: center; gap: 60px;
-}
-#hero .hero-text { position: relative; z-index: 2; }
-#hero .hero-tag {
-  display: inline-block;
-  font-size: 13px; font-weight: 600;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 24px;
-  padding: 8px 16px;
-  border: 1px solid var(--red-200);
-  border-radius: 100px;
-}
-#hero h1 {
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 900; line-height: 1.15;
-  letter-spacing: -2px;
-  color: var(--gray-900);
-  margin-bottom: 24px;
-}
-#hero h1 em {
-  font-style: normal;
-  color: var(--red);
-  position: relative;
-}
-#hero h1 em::after {
-  content: '';
-  position: absolute; bottom: 4px; left: 0; right: 0;
-  height: 8px; background: var(--red-200);
-  z-index: -1; border-radius: 4px;
-}
-#hero .hero-sub {
-  font-size: 18px; color: var(--gray-500);
-  line-height: 1.7; margin-bottom: 40px;
-  max-width: 480px;
-}
-#hero .hero-cta-wrap { display: flex; flex-direction: column; gap: 16px; }
-#hero .hero-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--red); color: var(--white);
-  padding: 18px 40px; border-radius: 12px;
-  font-size: 18px; font-weight: 700;
-  text-decoration: none;
-  transition: all 0.25s;
-  width: fit-content;
-  box-shadow: 0 4px 20px rgba(220,38,38,0.25);
-}
-#hero .hero-cta:hover { background: var(--red-700); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(220,38,38,0.35); }
-#hero .hero-meta {
-  font-size: 14px; color: var(--gray-400);
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: color 0.3s;
   letter-spacing: 0.5px;
 }
-#hero .hero-deco {
-  position: relative; display: flex; align-items: center; justify-content: center;
-}
-#hero .hero-deco .blob {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(220,38,38,0.15) 0%, rgba(220,38,38,0.05) 50%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(40px);
-  animation: blobFloat 6s ease-in-out infinite;
-}
-#hero .hero-deco .blob2 {
-  position: absolute; width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(220,38,38,0.2) 0%, transparent 70%);
-  border-radius: 50%; top: 20%; right: 10%;
-  filter: blur(30px);
-  animation: blobFloat 4s ease-in-out 1s infinite reverse;
-}
-@keyframes blobFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-20px) scale(1.05); }
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  background: var(--accent) !important;
+  color: var(--text) !important;
+  padding: 10px 24px !important;
+  border-radius: 6px;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: background 0.3s !important;
 }
 
-/* ===== STATS ===== */
-#stats {
-  padding: 100px 48px;
-  background: var(--white);
-  position: relative;
-}
-#stats::before {
-  content: '';
-  position: absolute; top: -60px; left: 0; right: 0; height: 60px;
-  background: linear-gradient(to bottom right, var(--red-100) 49.5%, var(--white) 50.5%);
-}
-#stats .stats-grid {
-  max-width: 1000px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 40px; text-align: center;
-}
-#stats .stat-item { padding: 20px; }
-#stats .stat-number {
-  font-size: clamp(56px, 8vw, 88px);
-  font-weight: 900; letter-spacing: -3px;
-  color: var(--red);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-#stats .stat-number span { font-size: 0.5em; color: var(--gray-400); }
-#stats .stat-label {
-  font-size: 16px; color: var(--gray-500);
-  font-weight: 500;
+.nav-cta:hover { background: var(--accent-hover) !important; }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  padding-top: 100px;
 }
 
-/* ===== AI INTAKE ===== */
-#ai-intake {
-  padding: 100px 48px;
-  background: var(--gray-50);
-  position: relative;
-}
-#ai-intake .section-header {
-  text-align: center; margin-bottom: 60px;
-}
-#ai-intake .section-header h2 {
-  font-size: 36px; font-weight: 800;
-  letter-spacing: -1px; margin-bottom: 12px;
-}
-#ai-intake .section-header p {
-  font-size: 16px; color: var(--gray-500);
+.hero-content {
+  max-width: 900px;
 }
 
-.intake-container {
-  max-width: 680px; margin: 0 auto;
-  background: var(--white);
-  border-radius: 20px;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.06);
-  overflow: hidden;
+.hero h1 {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -3px;
+  margin-bottom: 32px;
 }
 
-/* Step indicator */
-.step-indicator {
-  display: flex; padding: 24px 32px;
-  border-bottom: 1px solid var(--gray-100);
-  gap: 8px; align-items: center;
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 48px;
 }
-.step-dot {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700;
-  background: var(--gray-100); color: var(--gray-400);
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--text);
+  padding: 16px 36px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
   transition: all 0.3s;
-  flex-shrink: 0;
 }
-.step-dot.active { background: var(--red); color: var(--white); }
-.step-dot.done { background: var(--red-100); color: var(--red); }
-.step-line {
-  flex: 1; height: 2px;
-  background: var(--gray-100);
-  transition: background 0.3s;
-}
-.step-line.active { background: var(--red-200); }
 
-/* Step content area */
-.step-content {
-  padding: 40px 32px;
-  min-height: 360px;
-  position: relative;
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* ── Marquee ── */
+.marquee-section {
+  padding: 80px 0;
   overflow: hidden;
-}
-.step-panel {
-  display: none;
-  animation: slideIn 0.35s ease;
-}
-.step-panel.active { display: block; }
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(30px); }
-  to { opacity: 1; transform: translateX(0); }
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
-.step-panel h3 {
-  font-size: 22px; font-weight: 700;
-  margin-bottom: 28px; letter-spacing: -0.5px;
-}
-
-/* Type selection buttons */
-.type-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.type-btn {
-  padding: 20px; border: 2px solid var(--gray-100);
-  border-radius: 14px; background: var(--white);
-  cursor: pointer; text-align: left;
-  transition: all 0.2s; font-family: var(--font);
-}
-.type-btn:hover { border-color: var(--red-200); background: var(--red-light); }
-.type-btn.selected { border-color: var(--red); background: var(--red-light); }
-.type-btn .type-icon { font-size: 28px; margin-bottom: 8px; }
-.type-btn .type-label { font-size: 15px; font-weight: 600; color: var(--gray-800); }
-.type-btn .type-desc { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
-
-/* Question flow */
-.question-item { margin-bottom: 28px; }
-.question-item:last-child { margin-bottom: 0; }
-.q-label {
-  font-size: 15px; font-weight: 600; color: var(--gray-800);
-  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-}
-.q-num {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--red-light); color: var(--red);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; flex-shrink: 0;
-}
-.q-options { display: flex; flex-wrap: wrap; gap: 8px; }
-.q-opt {
-  padding: 10px 20px; border: 1.5px solid var(--gray-200);
-  border-radius: 100px; background: var(--white);
-  cursor: pointer; font-size: 14px; font-weight: 500;
-  color: var(--gray-700); transition: all 0.2s;
-  font-family: var(--font);
-}
-.q-opt:hover { border-color: var(--red-200); background: var(--red-light); }
-.q-opt.selected { border-color: var(--red); background: var(--red-light); color: var(--red); font-weight: 600; }
-.q-input {
-  width: 100%; padding: 14px 18px;
-  border: 1.5px solid var(--gray-200); border-radius: 12px;
-  font-size: 15px; font-family: var(--font);
-  transition: border-color 0.2s; outline: none;
-  color: var(--gray-800);
-}
-.q-input:focus { border-color: var(--red); }
-.q-input::placeholder { color: var(--gray-400); }
-
-/* File upload */
-.upload-zone {
-  border: 2px dashed var(--gray-200); border-radius: 16px;
-  padding: 48px 32px; text-align: center;
-  cursor: pointer; transition: all 0.2s;
-  background: var(--gray-50);
-}
-.upload-zone:hover { border-color: var(--red-200); background: var(--red-light); }
-.upload-zone.dragover { border-color: var(--red); background: var(--red-light); }
-.upload-icon { font-size: 40px; margin-bottom: 12px; }
-.upload-text { font-size: 15px; font-weight: 600; color: var(--gray-700); margin-bottom: 4px; }
-.upload-hint { font-size: 13px; color: var(--gray-400); }
-.file-list { margin-top: 16px; }
-.file-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px; background: var(--white);
-  border: 1px solid var(--gray-100); border-radius: 10px;
-  margin-bottom: 8px;
-}
-.file-item .file-name { font-size: 14px; color: var(--gray-700); font-weight: 500; }
-.file-item .file-remove {
-  background: none; border: none; cursor: pointer;
-  color: var(--gray-400); font-size: 18px; padding: 4px;
-  transition: color 0.2s; font-family: var(--font);
-}
-.file-item .file-remove:hover { color: var(--red); }
-
-/* Contact form */
-.contact-fields { display: flex; flex-direction: column; gap: 16px; }
-.field-group label {
-  display: block; font-size: 14px; font-weight: 600;
-  color: var(--gray-700); margin-bottom: 6px;
-}
-.field-group label .optional { color: var(--gray-400); font-weight: 400; }
-
-/* Step nav buttons */
-.step-nav {
-  padding: 20px 32px; border-top: 1px solid var(--gray-100);
-  display: flex; justify-content: space-between; align-items: center;
-}
-.btn-back {
-  padding: 12px 24px; border: 1.5px solid var(--gray-200);
-  border-radius: 10px; background: var(--white);
-  font-size: 14px; font-weight: 600; color: var(--gray-600);
-  cursor: pointer; transition: all 0.2s; font-family: var(--font);
-}
-.btn-back:hover { border-color: var(--gray-400); }
-.btn-next {
-  padding: 12px 32px; border: none;
-  border-radius: 10px; background: var(--red);
-  font-size: 14px; font-weight: 600; color: var(--white);
-  cursor: pointer; transition: all 0.2s; font-family: var(--font);
-}
-.btn-next:hover { background: var(--red-700); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(220,38,38,0.3); }
-.btn-next:disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; transform: none; box-shadow: none; }
-
-/* Complete screen */
-.complete-screen {
-  display: none; text-align: center; padding: 60px 32px;
-}
-.complete-screen.active { display: block; }
-.complete-icon { font-size: 64px; margin-bottom: 20px; }
-.complete-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-.complete-ref { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; }
-.complete-ref strong { color: var(--red); font-size: 16px; }
-.complete-msg { font-size: 16px; color: var(--gray-600); margin-bottom: 32px; line-height: 1.6; }
-.btn-home {
-  padding: 14px 36px; border: 2px solid var(--gray-200);
-  border-radius: 10px; background: var(--white);
-  font-size: 15px; font-weight: 600; color: var(--gray-700);
-  cursor: pointer; transition: all 0.2s; font-family: var(--font);
-  text-decoration: none; display: inline-block;
-}
-.btn-home:hover { border-color: var(--gray-400); }
-
-/* ===== SERVICES ===== */
-#services {
-  padding: 100px 48px;
-  background: var(--white);
-}
-.section-title {
-  font-size: 36px; font-weight: 800;
-  letter-spacing: -1px; margin-bottom: 60px;
-  text-align: center;
-}
-.services-list {
-  max-width: 900px; margin: 0 auto;
-  display: flex; flex-direction: column; gap: 20px;
-}
-.service-row {
-  display: flex; align-items: center; gap: 24px;
-  padding: 28px 32px;
-  border: 1px solid var(--gray-100);
-  border-radius: 16px;
-  transition: all 0.25s;
-  cursor: default;
-}
-.service-row:hover {
-  border-color: var(--red-200);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-}
-.service-icon {
-  width: 56px; height: 56px; flex-shrink: 0;
-  background: var(--red-light); border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
-}
-.service-info h4 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-.service-info p { font-size: 14px; color: var(--gray-500); }
-
-/* ===== PROCESS ===== */
-#process {
-  padding: 100px 48px;
-  background: var(--gray-50);
-}
-.process-steps {
-  max-width: 800px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-}
-.process-step { text-align: center; }
-.process-num {
-  font-size: 48px; font-weight: 900;
-  color: var(--red-200);
-  line-height: 1; margin-bottom: 16px;
-}
-.process-step h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-.process-step p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
-
-/* ===== PRICING ===== */
-#pricing {
-  padding: 100px 48px;
-  background: var(--white);
-}
-.pricing-grid {
-  max-width: 900px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.price-card {
-  padding: 36px 28px;
-  border: 1px solid var(--gray-100);
-  border-radius: 20px;
-  transition: all 0.25s;
-  position: relative;
-}
-.price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
-.price-card.featured {
-  border-color: var(--red);
-  background: linear-gradient(135deg, var(--red-light) 0%, var(--white) 100%);
-}
-.price-card.featured::before {
-  content: '인기';
-  position: absolute; top: -10px; right: 20px;
-  background: var(--red); color: var(--white);
-  padding: 4px 14px; border-radius: 100px;
-  font-size: 12px; font-weight: 700;
-}
-.price-tag { font-size: 13px; font-weight: 600; color: var(--red); margin-bottom: 8px; }
-.price-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
-.price-amount {
-  font-size: 32px; font-weight: 900; color: var(--red);
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
   margin-bottom: 20px;
 }
-.price-amount span { font-size: 14px; color: var(--gray-400); font-weight: 500; }
-.price-features { list-style: none; }
-.price-features li {
-  font-size: 14px; color: var(--gray-600);
-  padding: 6px 0;
-  display: flex; align-items: center; gap: 8px;
-}
-.price-features li::before { content: '✓'; color: var(--red); font-weight: 700; }
 
-/* ===== CASES (Timeline) ===== */
-#cases {
-  padding: 100px 48px;
-  background: var(--gray-50);
-}
-.timeline {
-  max-width: 700px; margin: 0 auto;
-  position: relative;
-}
-.timeline::before {
-  content: '';
-  position: absolute; left: 120px; top: 0; bottom: 0;
-  width: 2px; background: var(--red-200);
-}
-.timeline-item {
-  display: flex; gap: 32px; margin-bottom: 40px;
-  position: relative;
-  opacity: 0; transform: translateY(20px);
-  transition: all 0.5s ease;
-}
-.timeline-item.visible { opacity: 1; transform: translateY(0); }
-.timeline-date {
-  width: 100px; text-align: right;
-  font-size: 14px; font-weight: 700;
-  color: var(--gray-400);
-  padding-top: 4px; flex-shrink: 0;
-}
-.timeline-dot {
-  width: 14px; height: 14px;
-  background: var(--red); border-radius: 50%;
-  border: 3px solid var(--red-light);
-  flex-shrink: 0; margin-top: 6px;
-  position: relative; z-index: 1;
-}
-.timeline-content {
-  flex: 1; background: var(--white);
-  padding: 20px 24px; border-radius: 14px;
-  border: 1px solid var(--gray-100);
-}
-.timeline-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-.timeline-content .case-amount { font-size: 14px; color: var(--red); font-weight: 700; margin-bottom: 4px; }
-.timeline-content p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+.marquee:last-child { margin-bottom: 0; }
 
-/* ===== WHY US ===== */
-#why {
-  padding: 100px 48px;
-  background: var(--white);
+.marquee-inner {
+  display: inline-block;
+  animation: marqueeLeft 25s linear infinite;
 }
-.why-list {
-  max-width: 800px; margin: 0 auto;
-  display: flex; flex-direction: column; gap: 48px;
-}
-.why-item {
-  display: flex; gap: 32px; align-items: flex-start;
-  opacity: 0; transform: translateX(-20px);
-  transition: all 0.5s ease;
-}
-.why-item.visible { opacity: 1; transform: translateX(0); }
-.why-num {
-  font-size: 72px; font-weight: 900;
-  color: var(--red-100); line-height: 1;
-  flex-shrink: 0; width: 100px;
-}
-.why-text h4 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-.why-text p { font-size: 15px; color: var(--gray-500); line-height: 1.7; }
 
-/* ===== FINAL CTA ===== */
-#final-cta {
-  padding: 100px 48px;
-  background: linear-gradient(135deg, var(--red) 0%, var(--red-700) 100%);
+.marquee-reverse .marquee-inner {
+  animation: marqueeRight 30s linear infinite;
+}
+
+.marquee-text {
+  font-size: clamp(60px, 10vw, 120px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  -webkit-text-stroke: 1.5px var(--text-dim);
+  color: transparent;
+  padding-right: 80px;
+  display: inline-block;
+  user-select: none;
+}
+
+.marquee-text.filled {
+  -webkit-text-stroke: none;
+  color: var(--accent);
+  opacity: 0.15;
+}
+
+@keyframes marqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Stats ── */
+.stats-section {
+  padding: 160px 48px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  max-width: 1000px;
+  margin: 0 auto;
   text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-number .accent { color: var(--accent); }
+
+.stat-label {
+  font-size: 16px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ── Services Preview ── */
+.services-section {
+  padding: 160px 48px;
+  border-top: 1px solid var(--border);
+}
+
+.section-header {
+  margin-bottom: 80px;
+}
+
+.section-label {
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+}
+
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 48px 40px;
+  transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
 }
-#final-cta::before {
+
+.service-card::before {
   content: '';
-  position: absolute; top: -30px; left: 0; right: 0; height: 60px;
-  background: var(--white);
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
 }
-#final-cta h2 {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 900; color: var(--white);
-  letter-spacing: -1px; margin-bottom: 16px;
-}
-#final-cta p {
-  font-size: 18px; color: rgba(255,255,255,0.8);
-  margin-bottom: 40px;
-}
-#final-cta .cta-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--white); color: var(--red);
-  padding: 18px 48px; border-radius: 12px;
-  font-size: 18px; font-weight: 700;
-  text-decoration: none; transition: all 0.25s;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-#final-cta .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
 
-/* ===== FOOTER ===== */
-footer {
-  padding: 60px 48px 40px;
-  background: var(--gray-900);
-  color: var(--gray-400);
+.service-card:hover::before { transform: scaleX(1); }
+
+.service-card:hover {
+  border-color: #333;
+  transform: translateY(-4px);
 }
-footer .footer-top {
-  max-width: 1000px; margin: 0 auto;
-  display: flex; justify-content: space-between;
-  gap: 40px; margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-footer .footer-brand .f-logo {
-  font-size: 16px; font-weight: 800;
-  color: var(--white); letter-spacing: 4px;
+
+.service-card h3 {
+  font-size: 24px;
+  font-weight: 700;
   margin-bottom: 12px;
-}
-footer .footer-brand .f-logo span { color: var(--red); }
-footer .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 300px; }
-footer .footer-links h5 {
-  font-size: 13px; font-weight: 700;
-  color: var(--white); margin-bottom: 12px;
-  text-transform: uppercase; letter-spacing: 2px;
-}
-footer .footer-links a {
-  display: block; font-size: 13px;
-  color: var(--gray-400); text-decoration: none;
-  margin-bottom: 8px; transition: color 0.2s;
-}
-footer .footer-links a:hover { color: var(--white); }
-footer .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 20px;
-  text-align: center; font-size: 12px;
+  letter-spacing: -0.5px;
 }
 
-/* ===== SCROLL ANIMATIONS ===== */
+.service-card p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.service-link {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s;
+}
+
+.service-link:hover { gap: 12px; }
+
+/* ── CTA ── */
+.cta-section {
+  padding: 200px 48px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.cta-section h2 {
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -3px;
+  margin-bottom: 48px;
+  line-height: 1.1;
+}
+
+/* ── Footer ── */
+footer {
+  padding: 80px 48px 48px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+
+.footer-brand .nav-logo { margin-bottom: 16px; }
+
+.footer-desc {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+.footer-links-group h4 {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.footer-links-group a {
+  display: block;
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+
+.footer-links-group a:hover { color: var(--text); }
+
+.footer-bottom {
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+/* ── Scroll Animations ── */
 .fade-up {
-  opacity: 0; transform: translateY(30px);
-  transition: all 0.6s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-/* ===== RESPONSIVE ===== */
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Mobile ── */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  margin: 5px 0;
+  transition: all 0.3s;
+}
+
 @media (max-width: 768px) {
-  nav { padding: 0 20px; height: 64px; }
-  nav .nav-links { display: none; }
-  .nav-toggle { display: block; }
-  nav .nav-links.open {
-    display: flex; flex-direction: column;
-    position: absolute; top: 64px; left: 0; right: 0;
-    background: var(--white); padding: 20px;
-    border-bottom: 1px solid var(--gray-100);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  nav { padding: 16px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .hero { padding: 0 24px; padding-top: 80px; }
+  .stats-section { padding: 100px 24px; }
+  .stats-grid { grid-template-columns: 1fr; gap: 48px; }
+  .services-section { padding: 100px 24px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .cta-section { padding: 120px 24px; }
+  footer { padding: 60px 24px 32px; }
+  .footer-top { flex-direction: column; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 8px; }
+
+  .mobile-toggle { display: block; }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--surface);
+    flex-direction: column;
+    padding: 80px 32px;
+    gap: 24px;
+    transition: right 0.3s ease;
+    border-left: 1px solid var(--border);
   }
-
-  #hero { padding: 100px 20px 60px; }
-  #hero .hero-content { grid-template-columns: 1fr; gap: 30px; }
-  #hero .hero-deco { display: none; }
-  #hero h1 { font-size: 36px; letter-spacing: -1px; }
-  #hero .hero-sub { font-size: 16px; }
-  #hero .hero-cta { padding: 16px 32px; font-size: 16px; width: 100%; justify-content: center; }
-
-  #stats { padding: 60px 20px; }
-  #stats .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  #stats .stat-number { font-size: 40px; }
-
-  #ai-intake { padding: 60px 20px; }
-  .step-content { padding: 28px 20px; min-height: auto; }
-  .type-grid { grid-template-columns: 1fr; }
-  .step-nav { padding: 16px 20px; }
-  .step-indicator { padding: 16px 20px; }
-
-  #services, #process, #pricing, #cases, #why { padding: 60px 20px; }
-  .section-title { font-size: 28px; }
-
-  .process-steps { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 360px; }
-
-  .timeline::before { left: 16px; }
-  .timeline-date { width: 60px; font-size: 12px; }
-  .timeline-item { gap: 16px; }
-
-  .why-item { flex-direction: column; gap: 8px; }
-  .why-num { font-size: 48px; }
-
-  #final-cta { padding: 80px 20px; }
-  #final-cta .cta-btn { width: 100%; justify-content: center; }
-
-  footer { padding: 40px 20px 30px; }
-  footer .footer-top { flex-direction: column; }
-}
-
-@media (max-width: 480px) {
-  #hero h1 { font-size: 30px; }
-  #stats .stat-number { font-size: 32px; }
-  .process-steps { grid-template-columns: 1fr 1fr; }
+  .nav-links.open { right: 0; }
 }
 </style>
 </head>
 <body>
 
 <!-- Loading Screen -->
-<div id="loading-screen">
-  <div class="brand">THE <span>H</span></div>
-  <div class="sub">채권회수센터</div>
+<div class="loading-screen" id="loader">
+  <div class="loading-text"><span>THE H</span> 채권회수센터</div>
 </div>
 
 <!-- Navigation -->
-<nav id="navbar">
-  <a href="#" class="logo">THE <span>H</span></a>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">THE H</a>
   <div class="nav-links" id="navLinks">
-    <a href="#services">서비스</a>
-    <a href="#pricing">비용</a>
-    <a href="#cases">사례</a>
-    <a href="#why">왜 황해인가</a>
-    <a href="#ai-intake" class="nav-cta">무료 상담 접수</a>
+    <a href="service.html">서비스</a>
+    <a href="cost.html">비용</a>
+    <a href="cases.html">사례</a>
+    <a href="consult.html" class="nav-cta">상담 접수</a>
   </div>
-  <button class="nav-toggle" id="navToggle" aria-label="메뉴">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- Hero -->
-<section id="hero">
-  <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-tag">법률 채권회수 전문</div>
-      <h1>
-        돈 떼인 사람,<br>
-        여기 <em>모이세요.</em>
-      </h1>
-      <p class="hero-sub">
-        빌려준 돈, 못 받은 월급, 날린 투자금.<br>
-        변호사가 끝까지 받아드립니다.
-      </p>
-      <div class="hero-cta-wrap">
-        <a href="#ai-intake" class="hero-cta">지금 바로 접수하기 →</a>
-        <span class="hero-meta">99,000원부터 · 성공보수 · 전국 비대면</span>
-      </div>
+<section class="hero">
+  <div class="hero-content fade-up">
+    <h1>돈 떼인 사람,<br>여기 모이세요.</h1>
+    <p class="hero-sub">빌려준 돈, 못 받은 월급, 날린 투자금.<br>변호사가 끝까지 받아드립니다.</p>
+    <a href="consult.html" class="btn-primary">지금 접수하기 &rarr;</a>
+  </div>
+</section>
+
+<!-- Marquee -->
+<section class="marquee-section">
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span class="marquee-text">돈 떼이면 끝인가요.</span>
+      <span class="marquee-text filled">돈 떼이면 끝인가요.</span>
+      <span class="marquee-text">돈 떼이면 끝인가요.</span>
+      <span class="marquee-text filled">돈 떼이면 끝인가요.</span>
+      <span class="marquee-text">돈 떼이면 끝인가요.</span>
+      <span class="marquee-text filled">돈 떼이면 끝인가요.</span>
     </div>
-    <div class="hero-deco">
-      <div class="blob"></div>
-      <div class="blob2"></div>
+  </div>
+  <div class="marquee marquee-reverse">
+    <div class="marquee-inner">
+      <span class="marquee-text filled">받아드립니다.</span>
+      <span class="marquee-text">받아드립니다.</span>
+      <span class="marquee-text filled">받아드립니다.</span>
+      <span class="marquee-text">받아드립니다.</span>
+      <span class="marquee-text filled">받아드립니다.</span>
+      <span class="marquee-text">받아드립니다.</span>
     </div>
   </div>
 </section>
 
 <!-- Stats -->
-<section id="stats">
+<section class="stats-section">
   <div class="stats-grid">
-    <div class="stat-item fade-up">
-      <div class="stat-number" data-target="2847">0<span>+</span></div>
-      <div class="stat-label">누적 회수 건수</div>
+    <div class="fade-up">
+      <div class="stat-number">1,200<span class="accent">+</span></div>
+      <div class="stat-label">승소 건수</div>
     </div>
-    <div class="stat-item fade-up">
-      <div class="stat-number" data-target="94">0<span>%</span></div>
-      <div class="stat-label">의뢰인 만족도</div>
+    <div class="fade-up">
+      <div class="stat-number">92<span class="accent">%</span></div>
+      <div class="stat-label">승소율</div>
     </div>
-    <div class="stat-item fade-up">
-      <div class="stat-number" data-target="187">0<span>억</span></div>
-      <div class="stat-label">누적 회수 금액</div>
+    <div class="fade-up">
+      <div class="stat-number">20<span class="accent">+</span></div>
+      <div class="stat-label">년 경력</div>
     </div>
   </div>
 </section>
 
-<!-- AI Intake -->
-<section id="ai-intake">
+<!-- Services Preview -->
+<section class="services-section">
   <div class="section-header fade-up">
-    <h2>3분 만에 상담 접수</h2>
-    <p>복잡한 설명 필요 없어요. 버튼 몇 번이면 끝.</p>
+    <div class="section-label">Services</div>
+    <h2 class="section-title">무엇을 못 받으셨나요?</h2>
   </div>
-  <div class="intake-container" id="intakeForm">
-    <!-- Step Indicator -->
-    <div class="step-indicator">
-      <div class="step-dot active" data-step="1">1</div>
-      <div class="step-line"></div>
-      <div class="step-dot" data-step="2">2</div>
-      <div class="step-line"></div>
-      <div class="step-dot" data-step="3">3</div>
-      <div class="step-line"></div>
-      <div class="step-dot" data-step="4">4</div>
-    </div>
-
-    <!-- Step 1: Type Selection -->
-    <div class="step-content">
-      <div class="step-panel active" id="step1">
-        <h3>어떤 돈을 못 받으셨나요?</h3>
-        <div class="type-grid">
-          <button class="type-btn" data-type="loan" onclick="selectType(this)">
-            <div class="type-icon">💸</div>
-            <div class="type-label">빌려준 돈 (대여금)</div>
-            <div class="type-desc">지인, 가족 등에게 빌려준 돈</div>
-          </button>
-          <button class="type-btn" data-type="wage" onclick="selectType(this)">
-            <div class="type-icon">💼</div>
-            <div class="type-label">못 받은 급여·용역비</div>
-            <div class="type-desc">임금체불, 프리랜서 용역비</div>
-          </button>
-          <button class="type-btn" data-type="invest" onclick="selectType(this)">
-            <div class="type-icon">📉</div>
-            <div class="type-label">투자금·사기 피해</div>
-            <div class="type-desc">투자금 미반환, 사기 피해</div>
-          </button>
-          <button class="type-btn" data-type="other" onclick="selectType(this)">
-            <div class="type-icon">📋</div>
-            <div class="type-label">기타 채권</div>
-            <div class="type-desc">매매대금, 보증금 등</div>
-          </button>
-        </div>
-      </div>
-
-      <!-- Step 2: Questions (dynamic) -->
-      <div class="step-panel" id="step2">
-        <h3>몇 가지만 여쭤볼게요</h3>
-        <div id="questionFlow"></div>
-      </div>
-
-      <!-- Step 3: File Upload -->
-      <div class="step-panel" id="step3">
-        <h3>증거가 될 수 있는 자료를 올려주세요</h3>
-        <p style="font-size:14px;color:var(--gray-400);margin-bottom:24px;">선택 사항이에요. 나중에 보내셔도 됩니다.</p>
-        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
-          <div class="upload-icon">📎</div>
-          <div class="upload-text">파일을 끌어다 놓거나 클릭하세요</div>
-          <div class="upload-hint">차용증, 이체내역, 카톡 캡처, 계약서, 근로계약서 등</div>
-        </div>
-        <input type="file" id="fileInput" multiple style="display:none" onchange="handleFiles(this.files)">
-        <div class="file-list" id="fileList"></div>
-      </div>
-
-      <!-- Step 4: Contact -->
-      <div class="step-panel" id="step4">
-        <h3>마지막으로 연락처를 알려주세요</h3>
-        <div class="contact-fields">
-          <div class="field-group">
-            <label>이름</label>
-            <input type="text" class="q-input" id="contactName" placeholder="홍길동">
-          </div>
-          <div class="field-group">
-            <label>전화번호</label>
-            <input type="tel" class="q-input" id="contactPhone" placeholder="010-0000-0000">
-          </div>
-          <div class="field-group">
-            <label>이메일 <span class="optional">(선택)</span></label>
-            <input type="email" class="q-input" id="contactEmail" placeholder="email@example.com">
-          </div>
-        </div>
-      </div>
-
-      <!-- Complete Screen -->
-      <div class="complete-screen" id="completeScreen">
-        <div class="complete-icon">✅</div>
-        <div class="complete-title">접수가 완료되었습니다</div>
-        <div class="complete-ref">접수번호: <strong id="refNumber"></strong></div>
-        <div class="complete-msg">
-          담당 변호사가 <strong>1영업일 내</strong> 연락드리겠습니다.<br>
-          빠른 상담을 원하시면 전화 주세요.
-        </div>
-        <a href="#" class="btn-home" onclick="resetForm(); return false;">홈으로 돌아가기</a>
-      </div>
-    </div>
-
-    <!-- Step Navigation -->
-    <div class="step-nav" id="stepNav">
-      <button class="btn-back" id="btnBack" onclick="prevStep()" style="visibility:hidden;">← 이전</button>
-      <button class="btn-next" id="btnNext" onclick="nextStep()" disabled>다음 →</button>
-    </div>
+  <div class="services-grid">
+    <a href="service.html#loan" class="service-card fade-up">
+      <h3>대여금 회수</h3>
+      <p>빌려준 돈을 돌려받지 못하고 계신가요. 차용증이 없어도 이체 내역, 메신저 대화만으로 소송이 가능합니다.</p>
+      <span class="service-link">자세히 보기 &rarr;</span>
+    </a>
+    <a href="service.html#wage" class="service-card fade-up">
+      <h3>임금 체불</h3>
+      <p>일한 만큼 받는 건 당연한 권리입니다. 체불 임금, 퇴직금, 연차수당까지 전액 회수합니다.</p>
+      <span class="service-link">자세히 보기 &rarr;</span>
+    </a>
+    <a href="service.html#invest" class="service-card fade-up">
+      <h3>투자금 반환</h3>
+      <p>허위 투자 권유, 원금 보장 약속 위반. 사기로 날린 투자금을 법적 절차로 되찾아 드립니다.</p>
+      <span class="service-link">자세히 보기 &rarr;</span>
+    </a>
+    <a href="service.html#damage" class="service-card fade-up">
+      <h3>손해배상</h3>
+      <p>계약 위반, 불법행위로 인한 손해. 정확한 손해액 산정과 신속한 소송으로 배상받으세요.</p>
+      <span class="service-link">자세히 보기 &rarr;</span>
+    </a>
   </div>
 </section>
 
-<!-- Services -->
-<section id="services">
-  <h2 class="section-title fade-up">전문 서비스</h2>
-  <div class="services-list">
-    <div class="service-row fade-up">
-      <div class="service-icon">📄</div>
-      <div class="service-info">
-        <h4>내용증명 발송</h4>
-        <p>법적 효력 있는 내용증명을 작성·발송하여 채무자에게 압박합니다.</p>
-      </div>
-    </div>
-    <div class="service-row fade-up">
-      <div class="service-icon">⚖️</div>
-      <div class="service-info">
-        <h4>지급명령 신청</h4>
-        <p>법원을 통한 지급명령으로 신속하게 채권을 확보합니다.</p>
-      </div>
-    </div>
-    <div class="service-row fade-up">
-      <div class="service-icon">🔨</div>
-      <div class="service-info">
-        <h4>민사소송 대리</h4>
-        <p>소액사건부터 대형 채권까지, 전문 변호사가 소송을 대리합니다.</p>
-      </div>
-    </div>
-    <div class="service-row fade-up">
-      <div class="service-icon">🏦</div>
-      <div class="service-info">
-        <h4>강제집행</h4>
-        <p>재산 압류, 급여 압류 등 강제집행을 통해 실제 회수합니다.</p>
-      </div>
-    </div>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="fade-up">
+    <h2>더 이상<br>참지 마세요.</h2>
+    <a href="consult.html" class="btn-primary">무료 상담 받기 &rarr;</a>
   </div>
-</section>
-
-<!-- Process -->
-<section id="process">
-  <h2 class="section-title fade-up">이용 방법</h2>
-  <div class="process-steps">
-    <div class="process-step fade-up">
-      <div class="process-num">01</div>
-      <h4>상담 접수</h4>
-      <p>온라인으로 간편하게<br>사건 내용을 접수하세요</p>
-    </div>
-    <div class="process-step fade-up">
-      <div class="process-num">02</div>
-      <h4>사건 분석</h4>
-      <p>담당 변호사가 사건을<br>검토하고 전략을 수립합니다</p>
-    </div>
-    <div class="process-step fade-up">
-      <div class="process-num">03</div>
-      <h4>법적 절차</h4>
-      <p>내용증명, 지급명령,<br>소송 등 최적 절차 진행</p>
-    </div>
-    <div class="process-step fade-up">
-      <div class="process-num">04</div>
-      <h4>채권 회수</h4>
-      <p>강제집행까지 책임지고<br>끝까지 받아드립니다</p>
-    </div>
-  </div>
-</section>
-
-<!-- Pricing -->
-<section id="pricing">
-  <h2 class="section-title fade-up">투명한 비용 안내</h2>
-  <div class="pricing-grid">
-    <div class="price-card fade-up">
-      <div class="price-tag">BASIC</div>
-      <div class="price-name">내용증명</div>
-      <div class="price-amount">99,000<span>원~</span></div>
-      <ul class="price-features">
-        <li>법률 검토 포함</li>
-        <li>발송 대행</li>
-        <li>1영업일 내 발송</li>
-      </ul>
-    </div>
-    <div class="price-card featured fade-up">
-      <div class="price-tag">STANDARD</div>
-      <div class="price-name">지급명령</div>
-      <div class="price-amount">330,000<span>원~</span></div>
-      <ul class="price-features">
-        <li>내용증명 포함</li>
-        <li>법원 지급명령 신청</li>
-        <li>이의 시 소송 전환</li>
-        <li>성공보수 별도</li>
-      </ul>
-    </div>
-    <div class="price-card fade-up">
-      <div class="price-tag">PREMIUM</div>
-      <div class="price-name">소송 + 강제집행</div>
-      <div class="price-amount">별도 협의</div>
-      <ul class="price-features">
-        <li>민사소송 전 과정</li>
-        <li>재산조회 + 압류</li>
-        <li>강제집행 대리</li>
-        <li>성공보수제 가능</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- Cases -->
-<section id="cases">
-  <h2 class="section-title fade-up">회수 성공 사례</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">2024.12</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="case-amount">회수 금액: 4,500만원</div>
-        <h4>지인 대여금 — 차용증 없는 사건</h4>
-        <p>카카오톡 대화 내역과 계좌이체 기록만으로 지급명령 → 강제집행 성공</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2024.10</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="case-amount">회수 금액: 1억 2,000만원</div>
-        <h4>법인 대여금 — 연대보증 사건</h4>
-        <p>폐업한 법인 대표 개인 재산 추적 → 부동산 가압류 → 전액 회수</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2024.08</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="case-amount">회수 금액: 2,800만원</div>
-        <h4>프리랜서 용역비 체불</h4>
-        <p>계약서 + 이메일 증거로 내용증명 → 2주 내 전액 입금 완료</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2024.05</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="case-amount">회수 금액: 8,700만원</div>
-        <h4>투자금 사기 — 잠적 사건</h4>
-        <p>사기죄 고소 + 민사소송 병행 → 재산 동결 후 합의금 수령</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Why Us -->
-<section id="why">
-  <h2 class="section-title fade-up">왜 황해인가</h2>
-  <div class="why-list">
-    <div class="why-item">
-      <div class="why-num">01</div>
-      <div class="why-text">
-        <h4>채권회수 전문 변호사</h4>
-        <p>일반 민사가 아닌, 채권회수만 집중합니다. 수천 건의 경험에서 나오는 노하우가 다릅니다.</p>
-      </div>
-    </div>
-    <div class="why-item">
-      <div class="why-num">02</div>
-      <div class="why-text">
-        <h4>성공보수제 — 못 받으면 안 받습니다</h4>
-        <p>회수에 성공해야 보수를 받는 구조입니다. 의뢰인과 같은 배에 탑니다.</p>
-      </div>
-    </div>
-    <div class="why-item">
-      <div class="why-num">03</div>
-      <div class="why-text">
-        <h4>전국 비대면 — 어디서든 가능</h4>
-        <p>방문 없이 카카오톡과 화상 상담으로 진행합니다. 서울이든 제주든 상관없습니다.</p>
-      </div>
-    </div>
-    <div class="why-item">
-      <div class="why-num">04</div>
-      <div class="why-text">
-        <h4>끝까지 — 강제집행까지 책임</h4>
-        <p>판결만 받고 끝이 아닙니다. 재산조회, 압류, 추심까지 실제로 돈이 들어올 때까지.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Final CTA -->
-<section id="final-cta">
-  <h2>더 이상 혼자 끙끙대지 마세요.</h2>
-  <p>빌려준 돈, 지금 바로 되찾기 시작하세요.</p>
-  <a href="#ai-intake" class="cta-btn">무료 상담 접수하기 →</a>
 </section>
 
 <!-- Footer -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="f-logo">THE <span>H</span> 채권회수센터</div>
-      <p>황해법률사무소<br>서울특별시 서초구 서초대로 OOO<br>대표변호사 OOO · 사업자등록번호 000-00-00000</p>
+      <div class="nav-logo">THE H</div>
+      <p class="footer-desc">황해 채권회수센터는 채권 회수 전문 법무법인입니다. 20년 이상의 경험으로 의뢰인의 권리를 지킵니다.</p>
     </div>
-    <div class="footer-links">
-      <h5>서비스</h5>
-      <a href="#services">내용증명</a>
-      <a href="#services">지급명령</a>
-      <a href="#services">민사소송</a>
-      <a href="#services">강제집행</a>
+    <div class="footer-links-group">
+      <h4>바로가기</h4>
+      <a href="service.html">서비스 소개</a>
+      <a href="cost.html">비용 안내</a>
+      <a href="cases.html">승소 사례</a>
+      <a href="contact.html">상담 신청</a>
     </div>
-    <div class="footer-links">
-      <h5>안내</h5>
-      <a href="#pricing">비용 안내</a>
-      <a href="#cases">성공 사례</a>
-      <a href="#process">이용 방법</a>
-      <a href="#ai-intake">상담 접수</a>
+    <div class="footer-links-group">
+      <h4>상담</h4>
+      <a href="consult.html">AI 상담 접수</a>
+      <a href="tel:02-1234-5678">02-1234-5678</a>
+      <a href="mailto:contact@theh-law.kr">contact@theh-law.kr</a>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2025 황해 채권회수센터. All rights reserved.
+    <span>2026 THE H 채권회수센터. All rights reserved.</span>
+    <span>서울특별시 서초구 법원로 00길 00, 00빌딩 0층</span>
   </div>
 </footer>
 
 <script>
-// ===== LOADING =====
+// Loading screen
 window.addEventListener('load', () => {
   setTimeout(() => {
-    const ls = document.getElementById('loading-screen');
-    ls.classList.add('fade-out');
-    setTimeout(() => ls.style.display = 'none', 600);
+    document.getElementById('loader').classList.add('hidden');
   }, 2000);
 });
 
-// ===== NAV SCROLL =====
-const navbar = document.getElementById('navbar');
+// Nav scroll
+const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  nav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ===== MOBILE NAV =====
-document.getElementById('navToggle').addEventListener('click', () => {
+// Mobile menu
+document.getElementById('mobileToggle').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
 });
-document.querySelectorAll('#navLinks a').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
-});
 
-// ===== COUNTER ANIMATION =====
-function animateCounters() {
-  document.querySelectorAll('[data-target]').forEach(el => {
-    const target = +el.dataset.target;
-    const suffix = el.querySelector('span')?.outerHTML || '';
-    const duration = 2000;
-    const start = performance.now();
-    function tick(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.innerHTML = Math.floor(eased * target).toLocaleString() + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  });
-}
-
-// ===== INTERSECTION OBSERVER =====
+// Scroll animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      if (entry.target.closest('#stats')) animateCounters();
-      observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15 });
-document.querySelectorAll('.fade-up, .timeline-item, .why-item').forEach(el => observer.observe(el));
+}, { threshold: 0.1 });
 
-// ===== INTAKE FORM STATE =====
-let currentStep = 1;
-let selectedType = null;
-let answers = {};
-let uploadedFiles = [];
-
-const questions = {
-  loan: [
-    { id: 'opponent', q: '상대방은 누구인가요?', type: 'choice', options: ['개인', '법인', '모름'] },
-    { id: 'amount', q: '빌려준 금액은 얼마인가요?', type: 'input', placeholder: '예: 3,000만원' },
-    { id: 'date', q: '빌려준 시기는?', type: 'choice', options: ['최근 1년', '1~3년 전', '3년 이상', '정확히 모름'] },
-    { id: 'evidence', q: '차용증이나 이체 내역이 있나요?', type: 'choice', options: ['차용증 있음', '이체내역만', '카톡 대화만', '없음'] },
-    { id: 'promise', q: '상대방이 갚겠다고 한 적 있나요?', type: 'choice', options: ['있음 (문자/카톡)', '구두로만', '없음'] },
-    { id: 'notice', q: '내용증명을 보낸 적 있나요?', type: 'choice', options: ['보냈음', '안 보냈음'] }
-  ],
-  wage: [
-    { id: 'empType', q: '고용 형태는?', type: 'choice', options: ['정규직', '계약직', '프리랜서', '아르바이트'] },
-    { id: 'amount', q: '체불 금액은?', type: 'input', placeholder: '예: 500만원' },
-    { id: 'period', q: '체불 기간은?', type: 'input', placeholder: '예: 2024년 3월~6월' },
-    { id: 'contract', q: '근로계약서가 있나요?', type: 'choice', options: ['있음', '없음'] },
-    { id: 'report', q: '노동청에 신고한 적 있나요?', type: 'choice', options: ['신고함', '안 함'] }
-  ],
-  invest: [
-    { id: 'investType', q: '투자 유형은?', type: 'choice', options: ['주식/코인', '부동산', '사업투자', '기타'] },
-    { id: 'amount', q: '투자 금액은?', type: 'input', placeholder: '예: 5,000만원' },
-    { id: 'contract', q: '투자 계약서가 있나요?', type: 'choice', options: ['있음', '없음'] },
-    { id: 'contact', q: '상대방 연락이 되나요?', type: 'choice', options: ['됨', '안 됨', '잠적'] }
-  ],
-  other: [
-    { id: 'desc', q: '어떤 종류의 채권인가요?', type: 'input', placeholder: '예: 매매대금, 임대보증금 등' },
-    { id: 'amount', q: '금액은 얼마인가요?', type: 'input', placeholder: '예: 2,000만원' },
-    { id: 'evidence', q: '관련 서류가 있나요?', type: 'choice', options: ['계약서 있음', '일부 있음', '없음'] },
-    { id: 'contact', q: '상대방 연락이 되나요?', type: 'choice', options: ['됨', '안 됨'] }
-  ]
-};
-
-function selectType(btn) {
-  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedType = btn.dataset.type;
-  document.getElementById('btnNext').disabled = false;
-}
-
-function renderQuestions() {
-  const flow = document.getElementById('questionFlow');
-  const qs = questions[selectedType] || [];
-  flow.innerHTML = qs.map((q, i) => {
-    if (q.type === 'choice') {
-      return `<div class="question-item">
-        <div class="q-label"><span class="q-num">${i+1}</span>${q.q}</div>
-        <div class="q-options">${q.options.map(o =>
-          `<button class="q-opt" onclick="selectAnswer('${q.id}','${o}',this)">${o}</button>`
-        ).join('')}</div>
-      </div>`;
-    } else {
-      return `<div class="question-item">
-        <div class="q-label"><span class="q-num">${i+1}</span>${q.q}</div>
-        <input type="text" class="q-input" placeholder="${q.placeholder}" oninput="answers['${q.id}']=this.value; checkStep2()">
-      </div>`;
-    }
-  }).join('');
-}
-
-function selectAnswer(id, val, btn) {
-  btn.closest('.q-options').querySelectorAll('.q-opt').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  answers[id] = val;
-  checkStep2();
-}
-
-function checkStep2() {
-  const qs = questions[selectedType] || [];
-  const required = qs.filter(q => q.type === 'choice').map(q => q.id);
-  const allAnswered = required.every(id => answers[id]);
-  document.getElementById('btnNext').disabled = !allAnswered;
-}
-
-function updateStepIndicator() {
-  document.querySelectorAll('.step-dot').forEach(dot => {
-    const s = +dot.dataset.step;
-    dot.classList.remove('active', 'done');
-    if (s === currentStep) dot.classList.add('active');
-    else if (s < currentStep) dot.classList.add('done');
-  });
-  document.querySelectorAll('.step-line').forEach((line, i) => {
-    line.classList.toggle('active', i < currentStep - 1);
-  });
-}
-
-function showStep(n) {
-  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-  const panel = document.getElementById('step' + n);
-  if (panel) panel.classList.add('active');
-  updateStepIndicator();
-
-  const back = document.getElementById('btnBack');
-  const next = document.getElementById('btnNext');
-  back.style.visibility = n === 1 ? 'hidden' : 'visible';
-
-  if (n === 2) {
-    renderQuestions();
-    next.textContent = '다음 →';
-    next.disabled = true;
-    checkStep2();
-  } else if (n === 3) {
-    next.textContent = '다음 →';
-    next.disabled = false;
-  } else if (n === 4) {
-    next.textContent = '접수하기';
-    next.disabled = false;
-  } else {
-    next.textContent = '다음 →';
-    next.disabled = !selectedType;
-  }
-}
-
-function nextStep() {
-  if (currentStep === 4) {
-    submitForm();
-    return;
-  }
-  currentStep++;
-  showStep(currentStep);
-}
-
-function prevStep() {
-  if (currentStep > 1) {
-    currentStep--;
-    showStep(currentStep);
-  }
-}
-
-function submitForm() {
-  const ref = 'HH-' + Date.now().toString(36).toUpperCase();
-  document.getElementById('refNumber').textContent = ref;
-  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('completeScreen').classList.add('active');
-  document.getElementById('stepNav').style.display = 'none';
-  document.querySelector('.step-indicator').style.display = 'none';
-}
-
-function resetForm() {
-  currentStep = 1;
-  selectedType = null;
-  answers = {};
-  uploadedFiles = [];
-  document.getElementById('fileList').innerHTML = '';
-  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('selected'));
-  document.getElementById('completeScreen').classList.remove('active');
-  document.getElementById('stepNav').style.display = 'flex';
-  document.querySelector('.step-indicator').style.display = 'flex';
-  showStep(1);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ===== FILE UPLOAD =====
-const uploadZone = document.getElementById('uploadZone');
-uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
-uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
-uploadZone.addEventListener('drop', e => {
-  e.preventDefault();
-  uploadZone.classList.remove('dragover');
-  handleFiles(e.dataTransfer.files);
-});
-
-function handleFiles(files) {
-  Array.from(files).forEach(f => {
-    uploadedFiles.push(f);
-    renderFileList();
-  });
-}
-
-function removeFile(idx) {
-  uploadedFiles.splice(idx, 1);
-  renderFileList();
-}
-
-function renderFileList() {
-  const list = document.getElementById('fileList');
-  list.innerHTML = uploadedFiles.map((f, i) =>
-    `<div class="file-item">
-      <span class="file-name">📄 ${f.name}</span>
-      <button class="file-remove" onclick="removeFile(${i})">✕</button>
-    </div>`
-  ).join('');
-}
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
