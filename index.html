@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE H 채권회수센터</title>
+<meta name="description" content="받아야 할 돈, 포기하지 마세요. 전담 변호사가 처음부터 끝까지 책임집니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ══ v9: MeritFirst Pixel-Perfect Hero ══ */
+
+/* ── 네비게이션 — 집단소송 플랫폼 스타일 ── */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0;
+}
+
+.nav-inner {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #111;
+}
+
+.nav-logo-icon {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #111;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  flex-shrink: 0;
+}
+
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.nav-logo-text .logo-main {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.3px;
+}
+
+.nav-logo-text .logo-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  letter-spacing: -0.2px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-menu a {
+  font-size: 15px;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+  color: #111;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-nav-outline {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-nav-outline:hover {
+  border-color: #bbb;
+}
+
+.btn-nav-filled {
+  padding: 10px 24px;
+  background: #111;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-nav-filled:hover {
+  background: #333;
+}
+
+/* ── 히어로 ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-top: 60px;
+  overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 90px 90px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 40px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* ── 메인 카피 ── */
+.hero-headline-wrap {
+  min-height: 160px; max-height: 160px; overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.hero-headline {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 64px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: 1.15;
+  color: #111;
+  text-align: center;
+}
+
+/* scramble span 스타일 */
+.scramble-text {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 64px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: 1.15;
+  color: #111;
+  display: block;
+  min-height: 1.2em;
+}
+
+/* ── 라벨 ── */
+.hero-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #999;
+  margin-bottom: 32px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* ── 입력 카드 (MeritFirst 정밀 클론) ── */
+.hero-card-outer {
+  width: 760px; max-width: 90vw;
+  height: 269px;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #DC2626, #3b82f6);
+  padding: 2px;
+  position: relative;
+}
+.hero-card {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 32px;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 14px;
+  box-shadow: none;
+  position: relative;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.hero-textarea {
+  width: 100%;
+  height: 120px; min-height: 120px; max-height: 120px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: #333;
+  resize: none;
+  outline: none;
+  font-family: 'Pretendard', sans-serif;
+  line-height: 1.6;
+  transition: opacity 0.4s;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+
+.hero-textarea::placeholder {
+  color: #999;
+}
+
+.hero-card-icon { display: none; }
+
+.icon-circle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+.hero-card-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-pill {
+  padding: 6px 16px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 20px;
+  font-size: 13px;
+  color: #333;
+  background: #fff;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.btn-pill:hover {
+  border-color: rgba(0,0,0,0.3);
+}
+
+.btn-pill-gradient {
+  background: linear-gradient(135deg, #DC2626, #3b82f6);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  padding: 10px 28px;
+  font-size: 14px;
+  border-radius: 24px;
+  letter-spacing: -0.2px;
+  box-shadow: 0 4px 16px rgba(220,38,38,0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-pill-gradient:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(220,38,38,0.35);
+}
+
+/* ── 플로팅 사이드 버튼 ── */
+.floating-side {
+  position: fixed;
+  left: 24px;
+  bottom: 32px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.float-btn-phone {
+  background: linear-gradient(135deg, #DC2626, #3b82f6);
+}
+
+.float-btn-kakao {
+  background: #FEE500;
+}
+
+.float-btn-phone svg { stroke: #fff; }
+.float-btn-kakao svg { fill: #3B1E1E; }
+
+.btn-send {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  transition: background 0.2s;
+}
+
+.btn-send:hover {
+  background: #e0e0e0;
+}
+
+/* ── 하단 2칸 ── */
+.hero-bottom {
+  position: absolute;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  z-index: 1;
+}
+
+.hero-bottom-left,
+.hero-bottom-right {
+  max-width: 380px;
+}
+
+.hero-bottom-left {
+  text-align: left;
+}
+
+.hero-bottom-right {
+  text-align: right;
+}
+
+.hero-bottom h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #111;
+  letter-spacing: 0;
+}
+
+.hero-bottom p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.hero-bottom-center {
+  align-self: center;
+}
+
+/* ── Stats (기존) ── */
+.stats-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  text-align: center;
+}
+
+/* ── Services (기존) ── */
+.services-section {
+  border-top: 1px solid var(--border);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.service-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  transition: all 0.3s;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+
+.service-card:hover::before { transform: scaleX(1); }
+
+.service-card:hover {
+  border-color: rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transform: translateY(-4px);
+}
+
+.service-card h3 { margin-bottom: 12px; }
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.service-card .price-hint {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--accent-light);
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.service-link {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s;
+}
+
+.service-link:hover { gap: 12px; }
+
+/* ── CTA ── */
+.cta-section {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  background: var(--bg-secondary);
+}
+
+.cta-section h2 { margin-bottom: 20px; }
+
+.cta-section .cta-sub {
+  color: var(--text-muted);
+  font-size: 17px;
+  margin-bottom: 40px;
+}
+
+/* ── 모바일 대응 ── */
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .hero-card-outer { width: 90vw; max-width: 600px; height: auto; }
+  .hero-card { height: auto; }
+}
+
+/* ── 모바일 (MeritFirst 모바일 픽셀 클론) ── */
+@media (max-width: 768px) {
+  .hero { padding: 70px 0 0; min-height: 100dvh; display: flex; flex-direction: column; }
+  .hero-content { padding: 0 20px; width: 100%; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+  /* 헤드라인 — 높이 고정 (스크램블 시 레이아웃 불변) */
+  .hero-headline { font-size: 28px; letter-spacing: -1px; line-height: 1.3; }
+  .scramble-text { font-size: 28px; letter-spacing: -1px; line-height: 1.3; }
+  .hero-headline-wrap { 
+    height: 80px; min-height: 80px; max-height: 80px; 
+    overflow: hidden; 
+    margin-bottom: 32px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* 라벨 — MeritFirst: 작은 대문자 */
+  .hero-label { font-size: 9px; letter-spacing: 2px; margin-bottom: 20px; }
+
+  /* 입력 카드 — MeritFirst 모바일 비율 */
+  .hero-card-outer { width: calc(100% - 32px); max-width: none; height: auto; padding: 2px; margin: 0 auto; }
+  .hero-card { padding: 24px 20px 20px; height: auto; box-sizing: border-box; display: flex; flex-direction: column; }
+  .hero-textarea { width: 100%; height: 80px; min-height: 80px; max-height: 80px; font-size: 14px; line-height: 1.6; }
+
+  /* 카드 푸터 — MeritFirst: 버튼 세로 좌측 + 전송 우하단 */
+  .hero-card-footer { 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: flex-end; 
+    margin-top: 16px; 
+    padding-top: 0; 
+    border-top: none; 
+  }
+  .hero-card-buttons { 
+    flex-direction: column; 
+    gap: 10px; 
+    align-items: stretch;
+    width: 100%;
+  }
+  .hero-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .btn-pill-gradient { 
+    font-size: 15px; 
+    padding: 14px 20px; 
+    text-align: center; 
+    white-space: nowrap; 
+    border: none; 
+    border-radius: 12px;
+    font-weight: 700;
+    display: block;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(220,38,38,0.3);
+  }
+  .floating-side {
+    left: 16px;
+    bottom: 24px;
+    gap: 10px;
+  }
+  .float-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* 하단 2칸 — 세로 중앙 정렬 */
+  .hero-bottom { 
+    position: relative; 
+    bottom: auto; 
+    flex-direction: column; 
+    gap: 24px; 
+    padding: 48px 20px 32px;
+    align-items: center;
+  }
+  .hero-bottom-left, .hero-bottom-right { 
+    max-width: 100%; 
+    text-align: center; 
+  }
+  .hero-bottom h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .hero-bottom p { font-size: 14px; line-height: 1.5; }
+  .hero-bottom-center { display: none; }
+
+  /* 네비 — 모바일 */
+  .nav-inner { padding: 12px 16px; }
+  .nav-logo-icon { width: 30px; height: 30px; font-size: 15px; }
+  .nav-logo-text .logo-main { font-size: 12px; }
+  .nav-logo-text .logo-sub { font-size: 10px; }
+  .nav-menu { display: none; }
+  .nav-actions .btn-nav-outline { display: none; }
+  .btn-nav-filled { font-size: 12px; padding: 8px 16px; }
+
+  /* 마키 */
+  .marquee-text { font-size: 60px !important; }
+
+  /* 통계 */
+  .stats-grid { grid-template-columns: 1fr; gap: 32px; }
+  .stat-number { font-size: 48px !important; }
+
+  /* 서비스 */
+  .services-grid { grid-template-columns: 1fr; }
+
+  /* CTA */
+  .cta h2 { font-size: 32px; }
+}
+
+/* 작은 모바일 (400px 이하) */
+@media (max-width: 400px) {
+  .hero-headline { font-size: 24px; }
+  .scramble-text { font-size: 24px; }
+  .hero-headline-wrap { height: 70px; min-height: 70px; max-height: 70px; }
+  .hero-card-outer { width: calc(100% - 24px); }
+  .hero-card { padding: 20px 16px 16px; }
+  .hero-textarea { height: 72px; min-height: 72px; max-height: 72px; font-size: 13px; }
+  .btn-pill { font-size: 13px; padding: 11px 16px; }
+  .marquee-text { font-size: 40px !important; }
+  .stat-number { font-size: 36px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loader">
+  <div class="loading-text"><span>THE H</span> 채권회수센터</div>
+</div>
+
+<!-- 네비게이션 — MeritFirst 스타일 -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon">H</div>
+      <div class="nav-logo-text">
+        <span class="logo-main">법무법인 더 에이치 황해</span>
+        <span class="logo-sub">채권회수센터</span>
+      </div>
+    </a>
+    <div class="nav-menu">
+      <a href="service.html">서비스 안내</a>
+      <a href="cost.html">비용 안내</a>
+      <a href="cases.html">성공 사례</a>
+      <a href="contact.html">문의하기</a>
+    </div>
+    <div class="nav-actions">
+      <a href="consult.html" class="btn-nav-filled">무료 상담 신청</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 히어로 — MeritFirst 픽셀 퍼펙트 클론 -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+
+  <div class="hero-content">
+    <!-- 메인 카피 (스크램블 효과) -->
+    <div class="hero-headline-wrap fade-up">
+      <h1 class="hero-headline">
+        <span class="scramble-text" id="scrambleEl">받아야 할 돈을 포기하면,<br>손해는 당신의 몫입니다.</span>
+      </h1>
+    </div>
+
+    <!-- 라벨 -->
+    <p class="hero-label fade-up">지금 바로 상담을 시작해보세요</p>
+
+    <!-- 입력 카드 -->
+    <div class="hero-card-outer fade-up"><div class="hero-card">
+      <textarea class="hero-textarea" id="heroTextarea" placeholder="어떤 채권을 회수하고 싶으신가요?"></textarea>
+
+      <div class="hero-card-footer">
+        <div class="hero-card-buttons">
+          <a href="consult.html" class="btn-pill btn-pill-gradient" id="heroAiBtn">지금 바로 상담하기</a>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- 하단 2칸 -->
+  <div class="hero-bottom">
+    <div class="hero-bottom-left fade-up">
+      <h3>채권자를 위한</h3>
+      <p>대여금, 투자금, 용역비 — 전담 변호사가 끝까지 받아드립니다.</p>
+    </div>
+    <div class="hero-bottom-center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </div>
+    <div class="hero-bottom-right fade-up">
+      <h3>채무자에게</h3>
+      <p>내용증명부터 강제집행까지, 법적 절차를 대행합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<section class="marquee-section" style="padding:40px 0;">
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-text">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text filled">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text filled">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text">YOUR CLAIM. OUR COMMITMENT.</span>
+      <span class="marquee-text filled">YOUR CLAIM. OUR COMMITMENT.</span>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="fade-up">
+        <div class="stat-number">1,200<span class="accent">+</span></div>
+        <div class="stat-label">승소 건수</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-number">92<span class="accent">%</span></div>
+        <div class="stat-label">승소율</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-number">20<span class="accent">+</span></div>
+        <div class="stat-label">년 경력</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Preview -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">Services</div>
+      <h2 class="section-title">어떤 채권이든,<br>최선의 경로를 찾습니다.</h2>
+    </div>
+    <div class="services-grid">
+      <a href="service.html#loan" class="service-card fade-up">
+        <span class="price-hint">55만원~</span>
+        <h3>대여금 회수</h3>
+        <p>빌려준 돈을 돌려받지 못하고 계신가요. 차용증이 없어도 이체 내역, 메신저 대화만으로 소송이 가능합니다.</p>
+        <span class="service-link">자세히 보기 →</span>
+      </a>
+      <a href="service.html#wage" class="service-card fade-up">
+        <span class="price-hint">성공보수제</span>
+        <h3>임금 체불</h3>
+        <p>일한 만큼 받는 건 당연한 권리입니다. 체불 임금, 퇴직금, 연차수당까지 전액 회수합니다.</p>
+        <span class="service-link">자세히 보기 →</span>
+      </a>
+      <a href="service.html#invest" class="service-card fade-up">
+        <span class="price-hint">민·형사 병행</span>
+        <h3>투자금 반환</h3>
+        <p>허위 투자 권유, 원금 보장 약속 위반. 사기로 날린 투자금을 법적 절차로 되찾아 드립니다.</p>
+        <span class="service-link">자세히 보기 →</span>
+      </a>
+      <a href="service.html#damage" class="service-card fade-up">
+        <span class="price-hint">전국 비대면</span>
+        <h3>손해배상</h3>
+        <p>계약 위반, 불법행위로 인한 손해. 정확한 손해액 산정과 신속한 소송으로 배상받으세요.</p>
+        <span class="service-link">자세히 보기 →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="fade-up">
+      <h2>한 통의 상담이,<br>시작입니다.</h2>
+      <p class="cta-sub">무료 상담으로 승소 가능성을 확인하세요.</p>
+      <a href="consult.html" class="btn-primary">무료 상담 받기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" style="letter-spacing:2px; color:var(--accent);">THE H</div>
+      <p class="footer-desc">황해 채권회수센터는 채권 회수 전문 법무법인입니다. 20년 이상의 경험으로 의뢰인의 권리를 지킵니다.</p>
+    </div>
+    <div class="footer-links-group">
+      <h4>바로가기</h4>
+      <a href="service.html">서비스 소개</a>
+      <a href="cost.html">비용 안내</a>
+      <a href="cases.html">승소 사례</a>
+      <a href="contact.html">상담 신청</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>상담</h4>
+      <a href="consult.html">AI 상담 접수</a>
+      <a href="tel:02-1234-5678">02-1234-5678</a>
+      <a href="mailto:contact@theh-law.kr">contact@theh-law.kr</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 THE H 채권회수센터. All rights reserved.</span>
+    <span>서울특별시 서초구 법원로 00길 00, 00빌딩 0층</span>
+  </div>
+</footer>
+
+<script>
+// 로딩 스크린
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2000);
+});
+
+// Nav 스크롤
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ── TextReveal (스크램블 효과) ──
+class TextReveal {
+  constructor(el) {
+    this.el = el;
+    this.chars = '!<>-_\\/[]{}—=+*^?#@$%&';
+  }
+  setText(newText) {
+    return new Promise(resolve => {
+      const cleanText = newText.replace(/<br\s*\/?>/gi, '\n');
+      const length = cleanText.length;
+      let revealed = 0;
+      const interval = setInterval(() => {
+        let output = '';
+        for (let i = 0; i < length; i++) {
+          if (cleanText[i] === '\n') {
+            output += '<br>';
+          } else if (i < revealed) {
+            output += cleanText[i];
+          } else if (i < revealed + 3) {
+            output += '<span style="color:#DC2626">' + this.chars[Math.floor(Math.random() * this.chars.length)] + '</span>';
+          } else {
+            output += '\u00A0';
+          }
+        }
+        this.el.innerHTML = output;
+        revealed++;
+        if (revealed > length + 3) {
+          clearInterval(interval);
+          this.el.innerHTML = newText;
+          resolve();
+        }
+      }, 50);
+    });
+  }
+}
+
+// 스크램블 실행
+const scrambleEl = document.getElementById('scrambleEl');
+if (scrambleEl) {
+  const fx = new TextReveal(scrambleEl);
+  const phrases = [
+    '받아야 할 돈을 포기하면,<br>손해는 당신의 몫입니다.',
+    '전담 변호사가 처음부터,<br>끝까지 책임집니다.',
+    '착수금 55만원부터,<br>성공보수제로 진행합니다.',
+    '전국 어디서든 비대면,<br>지금 바로 시작하세요.'
+  ];
+  let counter = 0;
+  const nextPhrase = () => {
+    fx.setText(phrases[counter]).then(() => {
+      setTimeout(nextPhrase, 4000);
+    });
+    counter = (counter + 1) % phrases.length;
+  };
+  nextPhrase();
+}
+
+// ── 입력창 크로스페이드 타이핑 ──
+const heroTextarea = document.getElementById('heroTextarea');
+if (heroTextarea) {
+  const phrases = [
+    '친구에게 빌려준 500만원을 돌려받고 싶습니다',
+    '프리랜서 용역비를 3개월째 못 받고 있습니다',
+    '투자한 2000만원의 원금을 회수하고 싶습니다',
+    '퇴직한 지 석 달째 퇴직금을 못 받았습니다',
+  ];
+  let idx = 0;
+  let crossfadeActive = true;
+  let crossfadeTimer = null;
+
+  function crossfadeText() {
+    if (!crossfadeActive) return;
+    heroTextarea.style.transition = 'opacity 0.4s';
+    heroTextarea.style.opacity = '0';
+    setTimeout(() => {
+      if (!crossfadeActive) return;
+      heroTextarea.value = phrases[idx];
+      heroTextarea.style.opacity = '1';
+      idx = (idx + 1) % phrases.length;
+    }, 400);
+    crossfadeTimer = setTimeout(crossfadeText, 4000);
+  }
+
+  heroTextarea.value = phrases[0];
+  idx = 1;
+  crossfadeTimer = setTimeout(crossfadeText, 4000);
+
+  heroTextarea.addEventListener('focus', () => {
+    crossfadeActive = false;
+    clearTimeout(crossfadeTimer);
+    heroTextarea.style.opacity = '1';
+    heroTextarea.value = '';
+  });
+
+  heroTextarea.addEventListener('blur', () => {
+    if (!heroTextarea.value.trim()) {
+      crossfadeActive = true;
+      idx = 0;
+      heroTextarea.value = phrases[0];
+      heroTextarea.style.opacity = '1';
+      idx = 1;
+      crossfadeTimer = setTimeout(crossfadeText, 4000);
+    }
+  });
+}
+
+// ── 전송 / 상담 이동 ──
+function goConsult() {
+  const val = heroTextarea ? heroTextarea.value.trim() : '';
+  if (val) {
+    window.location.href = 'consult.html?q=' + encodeURIComponent(val);
+  } else {
+    window.location.href = 'consult.html';
+  }
+}
+
+const heroSendBtn = document.getElementById('heroSendBtn');
+if (heroSendBtn) heroSendBtn.addEventListener('click', goConsult);
+
+if (heroTextarea) {
+  heroTextarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      goConsult();
+    }
+  });
+}
+
+const heroAiBtn = document.getElementById('heroAiBtn');
+if (heroAiBtn) {
+  heroAiBtn.addEventListener('click', (e) => {
+    const val = heroTextarea ? heroTextarea.value.trim() : '';
+    if (val) {
+      e.preventDefault();
+      window.location.href = 'consult.html?q=' + encodeURIComponent(val);
+    }
+  });
+}
+
+// 스크롤 페이드인
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+<!-- 플로팅 사이드 버튼 -->
+<div class="floating-side">
+  <a href="tel:032-251-1000" class="float-btn float-btn-phone" title="전화 상담">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+  <a href="https://pf.kakao.com/_placeholder" class="float-btn float-btn-kakao" title="카카오톡 상담">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="#3B1E1E">
+      <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.113 4.508 6.459-.199.742-.72 2.688-.826 3.104-.132.52.191.513.4.374.165-.11 2.627-1.787 3.696-2.515.71.1 1.444.153 2.222.153 5.523 0 10-3.463 10-7.575C22 6.463 17.523 3 12 3z"/>
+    </svg>
+  </a>
+</div>
+
+</body>
+</html>
